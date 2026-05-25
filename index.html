@@ -692,9 +692,9 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
       <span class="schema-label">– Costo reale personale LUM <span style="font-size:10px;opacity:0.7">(Σ ore attivate × €/h Patino · include tutte le aliquote)</span></span>
       <span class="schema-val neg" id="sc_pers">— inserire dati Patino ↓</span>
     </div>
-    <div class="schema-row schema-minus">
-      <span class="schema-label">– Costi generali struttura <span style="font-size:10px;opacity:0.7">(% su €500k · ripartita su n. progetti)</span></span>
-      <span class="schema-val neg" id="sc_cg">– € 75.000</span>
+    <div class="schema-row schema-minus" style="display:none">
+      <span class="schema-label">– Costi generali struttura</span>
+      <span class="schema-val neg" id="sc_cg"></span>
     </div>
     <div class="schema-row schema-total">
       <span class="schema-label">= MARGINE NETTO LUM Enterprise</span>
@@ -742,13 +742,12 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
           <div class="sim-slider-label"><span>Fornitori esterni (€k)</span><span class="sim-slider-val" id="outForn">€ 133k</span></div>
           <input type="range" min="0" max="250" value="133" step="5" id="sForn" oninput="calcM()">
         </div>
-        <div class="sim-row">
+        <div class="sim-row" style="display:none">
           <div class="sim-slider-label">
             <span>Costi generali struttura (% su €500k)</span>
             <span class="sim-slider-val" id="outCG">15%</span>
           </div>
           <input type="range" min="3" max="35" value="15" step="1" id="sCG" oninput="calcM()">
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-light);margin-top:3px"><span>↑ meno progetti</span><span>↓ più progetti attivi</span></div>
         </div>
         <div class="sim-row" style="margin-bottom:0">
           <div class="sim-slider-label">
@@ -827,9 +826,9 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
           <span class="bd-label">– Costo reale personale LUM</span>
           <span class="bd-val neg" id="bd_pers">—</span>
         </div>
-        <div class="bd-row" style="border-bottom:var(--border)">
+        <div class="bd-row" style="display:none;border-bottom:var(--border)">
           <span class="bd-label">– Costi generali struttura</span>
-          <span class="bd-val neg" id="bd_cg">—</span>
+          <span class="bd-val neg" id="bd_cg"></span>
         </div>
         <div class="bd-row" style="background:#eaf0e6">
           <span class="bd-label" style="font-weight:700;color:var(--ink)">= Margine netto</span>
