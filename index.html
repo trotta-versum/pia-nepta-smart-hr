@@ -284,6 +284,33 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 .tl-amount { font-size: 20px; font-weight: 600; color: #4a6741; }
 .tl-sub { font-size: 12px; color: var(--ink-light); margin-top: 2px; }
 
+/* ── SCHEMA LOGICO ── */
+.schema-box { border: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; }
+.schema-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 18px; gap: 16px; }
+.schema-top { background: var(--paper-warm); border-bottom: 2px solid var(--ink-faint); }
+.schema-minus { border-bottom: var(--border); }
+.schema-sub { background: #eaf0e6; border-bottom: 2px solid #c5d4be; }
+.schema-spacer { height: 8px; background: var(--paper-warm); border-bottom: var(--border); }
+.schema-delta { border-bottom: 1px dotted var(--ink-faint); padding: 10px 18px; }
+.schema-total { background: #2c3d2a; border-top: 2px solid #1e2d1c; }
+.schema-total .schema-label { color: rgba(255,255,255,0.85); font-weight:700; }
+.schema-label { font-size: 13px; color: var(--ink-mid); flex: 1; line-height: 1.4; }
+.schema-val { font-size: 14px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.schema-val-big { font-size: 20px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.schema-val.neg, .schema-val-big.neg { color: var(--danger); }
+.schema-val.pos, .schema-val-big.pos { color: #3a5030; }
+.schema-val.accent { color: var(--accent); }
+.schema-total .schema-val-big { color: #d4c97a; }
+.delta-num { display: inline-block; background: #4a6741; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; margin-right: 8px; letter-spacing: 0.05em; }
+.delta-sub { display: block; font-size: 11px; color: var(--ink-light); margin-top: 3px; margin-left: 36px; }
+
+/* ── BD ROWS ── */
+.bd-row { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; }
+.bd-label { font-size:12px; color:var(--ink-mid); }
+.bd-val { font-size:14px; font-weight:600; font-variant-numeric:tabular-nums; }
+.bd-val.neg { color:var(--danger); }
+.bd-val.accent { color:var(--accent); }
+
 /* ── STRATEGY CARDS ── */
 .strategy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
 .strategy-card { border: var(--border); border-radius: var(--radius); padding: 24px; }
@@ -647,65 +674,195 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
   <p class="section-eyebrow">05 &nbsp;·&nbsp; Analisi economica</p>
   <h2 class="section-title">Simulatore di <em>margine</em> LUM Enterprise</h2>
 
-  <div class="sim-container reveal">
-    <div class="sim-panel">
-      <span class="sim-label">Parametri di simulazione</span>
-      <div class="sim-row">
-        <div class="sim-slider-label"><span>Moltiplicatore ore personale</span><span class="sim-slider-val" id="outOre">×1.0</span></div>
-        <input type="range" min="50" max="200" value="100" step="5" id="sOre" oninput="calcM()">
-      </div>
-      <div class="sim-row">
-        <div class="sim-slider-label"><span>Fornitori esterni (€k)</span><span class="sim-slider-val" id="outForn">€133k</span></div>
-        <input type="range" min="30" max="160" value="133" step="5" id="sForn" oninput="calcM()">
-      </div>
-      <div class="sim-results">
-        <div class="sim-result-row"><span class="sim-result-label">Contratto (imponibile)</span><span class="sim-result-val">€500.000</span></div>
-        <div class="sim-result-row"><span class="sim-result-label">– Compenso fisso avvio</span><span class="sim-result-val neg">–€5.000</span></div>
-        <div class="sim-result-row"><span class="sim-result-label">– Costo reale personale</span><span class="sim-result-val neg" id="sPers">–€57.140</span></div>
-        <div class="sim-result-row"><span class="sim-result-label">– Fornitori esterni</span><span class="sim-result-val neg" id="sFornTxt">–€133.000</span></div>
-        <div class="sim-result-row"><span class="sim-result-label">Margine lordo stimato</span><span class="sim-result-val pos" id="sMarg">€304.860</span></div>
-      </div>
-      <div class="margine-track"><div class="margine-fill" id="margFill" style="width:61%;background:var(--accent)"></div></div>
+  <p style="font-size:13px;color:var(--ink-mid);margin-bottom:24px;max-width:740px;line-height:1.8">
+    LUM incassa <strong>€500.000 fissi</strong> da Nepta (ricerca contrattuale, nessun timesheet richiesto). Con quei €500k deve coprire fornitori, costo reale del proprio personale e costi generali, e raggiungere un <strong>margine netto ≥ 30%</strong> (≥ €150k). Il simulatore mostra quale mix di risorse attivare per massimizzare il margine senza superare il contratto.
+  </p>
+
+  <!-- SCHEMA LOGICO -->
+  <div class="schema-box reveal">
+    <div class="schema-row schema-top">
+      <span class="schema-label">Contratto Nepta → LUM <span style="font-size:10px;opacity:0.6">(ricerca contrattuale · nessun timesheet)</span></span>
+      <span class="schema-val-big">€ 500.000</span>
     </div>
-    <div>
-      <div class="margine-pct" id="margPct">61%</div>
-      <div class="margine-label">MARGINE % SUL CONTRATTO</div>
-      <div class="margine-euro" id="margEuro">€304.860 di margine lordo stimato</div>
-      <div style="margin-top:36px">
-        <div class="chart-container" style="height:220px">
-          <canvas id="scenariChart" role="img" aria-label="Margine LUM per scenario">Conservativo 64%, Base 61%, Ottimistico 67%, Massimizzato 68%</canvas>
+    <div class="schema-row schema-minus">
+      <span class="schema-label">– Fornitori esterni <span style="font-size:10px;opacity:0.7">(pass-through puro · nessun margine su questa voce)</span></span>
+      <span class="schema-val neg" id="sc_forn">– € 133.000</span>
+    </div>
+    <div class="schema-row schema-minus">
+      <span class="schema-label">– Costo reale personale LUM <span style="font-size:10px;opacity:0.7">(Σ ore attivate × €/h Patino · include tutte le aliquote)</span></span>
+      <span class="schema-val neg" id="sc_pers">— inserire dati Patino ↓</span>
+    </div>
+    <div class="schema-row schema-minus">
+      <span class="schema-label">– Costi generali struttura <span style="font-size:10px;opacity:0.7">(% su €500k · ripartita su n. progetti)</span></span>
+      <span class="schema-val neg" id="sc_cg">– € 75.000</span>
+    </div>
+    <div class="schema-row schema-total">
+      <span class="schema-label">= MARGINE NETTO LUM Enterprise</span>
+      <span class="schema-val-big" id="sc_marg" style="color:#d4c97a">—</span>
+    </div>
+    <div class="schema-row" style="padding:8px 18px 12px;background:#2c3d2a">
+      <span style="font-size:11px;color:rgba(255,255,255,0.4)">obiettivo ≥ <strong style="color:#d4c97a">30%</strong> su €500k = <strong style="color:#d4c97a">€150.000</strong></span>
+      <span style="font-size:13px;font-weight:700" id="sc_gap">—</span>
+    </div>
+  </div>
+
+  <!-- COPERTURA FORFAIT -->
+  <div class="reveal" style="margin-top:28px;padding:16px 20px;border:1px solid var(--ink-faint);border-radius:var(--radius);background:var(--paper-warm)">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px">Copertura contratto — Valore forfait dichiarato vs €500k</div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-light);margin-bottom:6px">
+          <span>Valore forfait attivato: <strong id="cov_val" style="color:var(--ink)">€ 0</strong></span>
+          <span>Limite: <strong>€ 500.000</strong></span>
+        </div>
+        <div style="height:10px;background:var(--ink-faint);border-radius:5px;overflow:hidden">
+          <div id="cov_bar" style="height:100%;border-radius:5px;background:#4a6741;transition:width 0.3s ease;width:0%"></div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-light);margin-top:5px">
+          Residuo disponibile: <strong id="cov_residuo" style="color:var(--accent)">€ 500.000</strong>
+          &nbsp;·&nbsp; Copertura: <strong id="cov_pct">0%</strong>
         </div>
       </div>
+      <div style="text-align:center;padding:10px 20px;background:white;border:var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;color:var(--ink-light);margin-bottom:4px;letter-spacing:0.08em;text-transform:uppercase">Margine €/h medio</div>
+        <div style="font-size:22px;font-weight:600;color:var(--accent)" id="cov_marg_h">—</div>
+        <div style="font-size:10px;color:var(--ink-light)">(forfait − Patino)</div>
+      </div>
     </div>
   </div>
 
-  <div class="strategy-grid reveal">
-    <div class="strategy-card">
-      <div class="strategy-num">01</div>
-      <div class="strategy-title">Massimizzare profili Fascia I</div>
-      <div class="strategy-body">Ricercatore Senior e Legal Expert (Fascia I, €75/h) generano il valore orario più elevato. Ogni ora rendicontata da questi profili produce il massimo rendimento rendicontabile.</div>
-      <div class="strategy-delta">€75/h</div>
-      <div class="strategy-delta-lbl">tariffa max – Fascia I (&gt;15 anni)</div>
+  <!-- SIMULATORE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px" class="reveal">
+
+    <!-- COLONNA SX: parametri globali + tabella risorse -->
+    <div>
+      <div class="sim-panel" style="margin-bottom:16px">
+        <span class="sim-label">Parametri globali</span>
+        <div class="sim-row">
+          <div class="sim-slider-label"><span>Fornitori esterni (€k)</span><span class="sim-slider-val" id="outForn">€ 133k</span></div>
+          <input type="range" min="0" max="250" value="133" step="5" id="sForn" oninput="calcM()">
+        </div>
+        <div class="sim-row">
+          <div class="sim-slider-label">
+            <span>Costi generali struttura (% su €500k)</span>
+            <span class="sim-slider-val" id="outCG">15%</span>
+          </div>
+          <input type="range" min="3" max="35" value="15" step="1" id="sCG" oninput="calcM()">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-light);margin-top:3px"><span>↑ meno progetti</span><span>↓ più progetti attivi</span></div>
+        </div>
+        <div class="sim-row" style="margin-bottom:0">
+          <div class="sim-slider-label">
+            <span>Efficienza ore reali (% ore forfait effettivamente lavorate)</span>
+            <span class="sim-slider-val" id="outEff">100%</span>
+          </div>
+          <input type="range" min="50" max="100" value="100" step="5" id="sEff" oninput="calcM()">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-light);margin-top:3px"><span>50% (metà ore)</span><span>100% (tutte le ore)</span></div>
+        </div>
+      </div>
+
+      <!-- Tabella risorse con ore attivabili e Patino editabile -->
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px">Mix risorse — ore attivate e costi Patino</div>
+      <div style="font-size:10px;color:var(--gold);margin-bottom:10px">✏ Inserisci €/h Patino e regola le ore attivate per ogni risorsa</div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;font-size:11px;border-collapse:collapse;min-width:480px" id="mixTable">
+          <thead><tr>
+            <th style="text-align:left;padding:6px 6px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Profilo</th>
+            <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">€/h forfait</th>
+            <th style="text-align:center;padding:6px 4px;background:var(--gold-light);border-bottom:2px solid var(--ink-faint);color:var(--gold);font-weight:700">€/h Patino ✏</th>
+            <th style="text-align:center;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Ore max</th>
+            <th style="text-align:center;padding:6px 4px;background:#eaf0e6;border-bottom:2px solid var(--ink-faint);color:#4a6741;font-weight:700">Ore attivate ✏</th>
+            <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Margine/h</th>
+            <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Costo reale</th>
+          </tr></thead>
+          <tbody id="mixBody"></tbody>
+          <tfoot>
+            <tr style="border-top:2px solid var(--ink-faint)">
+              <td colspan="2" style="padding:6px;font-weight:700;font-size:11px">TOTALE</td>
+              <td style="background:var(--gold-light)"></td>
+              <td style="text-align:center;padding:6px;font-weight:600" id="tot_oremax">—</td>
+              <td style="text-align:center;padding:6px;font-weight:700;background:#eaf0e6" id="tot_oreatt">—</td>
+              <td style="text-align:right;padding:6px;font-weight:700" id="tot_margH">—</td>
+              <td style="text-align:right;padding:6px;font-weight:700" id="tot_costoR">—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Bottone ottimizzatore -->
+      <button onclick="ottimizza()" style="margin-top:14px;width:100%;padding:10px;background:#2c3d2a;color:#d4c97a;border:none;border-radius:var(--radius);font-size:12px;font-weight:700;letter-spacing:0.08em;cursor:pointer;text-transform:uppercase">
+        ⚡ Ottimizza mix — massimizza margine restando in €500k
+      </button>
+      <div id="ottMsg" style="font-size:11px;color:var(--ink-light);margin-top:6px;text-align:center"></div>
     </div>
-    <div class="strategy-card">
-      <div class="strategy-num">02</div>
-      <div class="strategy-title">Internalizzare attività OR2-T3 e OR1-T3</div>
-      <div class="strategy-body">Sostituendo €55k di sub-fornitori per Backend AI e Modelli ML con personale interno Fascia II/III si genera margine aggiuntivo significativo rispetto al costo rendicontato.</div>
-      <div class="strategy-delta">+€23k stimati</div>
-      <div class="strategy-delta-lbl">margine da internalizzazione</div>
-    </div>
-    <div class="strategy-card">
-      <div class="strategy-num">03</div>
-      <div class="strategy-title">Gestire i SAL in modo ottimale</div>
-      <div class="strategy-body">Concentrare le ore personale Fascia I e II nei primi SAL massimizza il valore del contributo rendicontato e anticipa il riconoscimento del margine nelle tranche 2026–2027.</div>
-      <div class="strategy-delta">3 SAL</div>
-      <div class="strategy-delta-lbl">tranche residue · lug26 / mar27 / ott27</div>
+
+    <!-- COLONNA DX: risultati -->
+    <div>
+      <div class="margine-pct" id="margPct" style="margin-top:0">—</div>
+      <div class="margine-label">MARGINE NETTO % SU €500k</div>
+      <div class="margine-euro" id="margEuro" style="margin-bottom:4px">— margine netto stimato</div>
+      <div style="font-size:12px;color:var(--ink-light);margin-bottom:20px">
+        obiettivo ≥ 30% = €150k &nbsp;·&nbsp;
+        <span id="margGap" style="font-weight:600"></span>
+      </div>
+
+      <!-- Barra con marker 30% -->
+      <div style="position:relative;margin-bottom:28px">
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-light);margin-bottom:5px">
+          <span>0%</span><span style="color:var(--accent);font-weight:700">▼ obiettivo 30%</span><span>60%</span>
+        </div>
+        <div class="margine-track" style="height:10px">
+          <div class="margine-fill" id="margFill" style="width:0%"></div>
+        </div>
+        <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);width:2px;height:10px;background:var(--gold);opacity:0.7"></div>
+      </div>
+
+      <!-- Breakdown -->
+      <div style="border:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--paper-warm);padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light)">Scomposizione €500k</div>
+        <div class="bd-row" style="border-bottom:var(--border)">
+          <span class="bd-label">– Fornitori esterni</span>
+          <span class="bd-val neg" id="bd_forn">—</span>
+        </div>
+        <div class="bd-row" style="border-bottom:var(--border)">
+          <span class="bd-label">– Costo reale personale LUM</span>
+          <span class="bd-val neg" id="bd_pers">—</span>
+        </div>
+        <div class="bd-row" style="border-bottom:var(--border)">
+          <span class="bd-label">– Costi generali struttura</span>
+          <span class="bd-val neg" id="bd_cg">—</span>
+        </div>
+        <div class="bd-row" style="background:#eaf0e6">
+          <span class="bd-label" style="font-weight:700;color:var(--ink)">= Margine netto</span>
+          <span class="bd-val" id="bd_marg" style="font-size:16px;font-weight:700">—</span>
+        </div>
+      </div>
+
+      <!-- Valore forfait dichiarato -->
+      <div style="border:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--paper-warm);padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light)">Valore ricerca dichiarata (forfait Tab. n.2)</div>
+        <div class="bd-row" style="border-bottom:var(--border)">
+          <span class="bd-label">Valore forfait attivato</span>
+          <span class="bd-val accent" id="bd_forfait">—</span>
+        </div>
+        <div class="bd-row" style="border-bottom:var(--border)">
+          <span class="bd-label">Forfait coperto da contratto</span>
+          <span class="bd-val" id="bd_cov">—</span>
+        </div>
+        <div class="bd-row">
+          <span class="bd-label">Forfait residuo (non coperto)</span>
+          <span class="bd-val" id="bd_uncov" style="color:var(--gold)">—</span>
+        </div>
+      </div>
+
+      <div class="chart-container" style="height:190px">
+        <canvas id="scenariChart"></canvas>
+      </div>
     </div>
   </div>
 
-  <div class="warning-box reveal">
-    <strong>Vincolo normativo</strong>
-    <p>Le ore rendicontate devono essere documentate con timesheet firmati e output verificabili. La Commissione di Controllo PIA verificherà la coerenza tra ore dichiarate e risultati prodotti per ciascun OR. Non è ammesso rendicontare ore superiori a quelle effettivamente lavorate sul progetto.</p>
+  <div class="warning-box reveal" style="margin-top:28px">
+    <strong>Ricerca contrattuale — nessun obbligo di timesheet</strong>
+    <p>Il contratto Nepta–LUM è un contratto di fornitura di ricerca contrattuale: LUM non è tenuta a produrre timesheet. La rendicontazione verso Puglia Sviluppo avviene tramite le fatture Nepta, non con i costi interni LUM. Il margine è interno alla gestione LUM e non è esposto alla Commissione di Controllo PIA.</p>
   </div>
 </section>
 
@@ -837,21 +994,7 @@ new Chart(document.getElementById('finChart'), {
   }
 });
 
-new Chart(document.getElementById('scenariChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Conservativo','Base','Ottimistico','Massimizzato'],
-    datasets: [{ data: [322002,304860,335004,342148], backgroundColor: ['#c5d4be','#c5d4be','#4a6741','#1e2d1c'], barPercentage: 0.6 }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    scales: {
-      x: { grid: { display: false }, border: { display: false } },
-      y: { grid: { color: gridColor }, border: { display: false }, min: 280000, ticks: { callback: v => '€'+(v/1000).toFixed(0)+'k' } }
-    },
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '€'+ctx.raw.toLocaleString('it-IT') } } }
-  }
-});
+
 
 new Chart(document.getElementById('salChart'), {
   type: 'line',
@@ -874,26 +1017,304 @@ new Chart(document.getElementById('salChart'), {
   }
 });
 
-/* ── SIMULATORE ── */
-const baseRealePers = 57140;
-function fmt(n) { return '€'+Math.round(n).toLocaleString('it-IT'); }
-function calcM() {
-  const mult = document.getElementById('sOre').value / 100;
-  const forn = document.getElementById('sForn').value * 1000;
-  const cp = Math.round(baseRealePers * mult);
-  const marg = 500000 - 5000 - cp - forn;
-  const pct = Math.max(0, Math.round(marg / 5000));
-  document.getElementById('outOre').textContent = '×'+mult.toFixed(1);
-  document.getElementById('outForn').textContent = '€'+Math.round(forn/1000)+'k';
-  document.getElementById('sPers').textContent = '–'+fmt(cp);
-  document.getElementById('sFornTxt').textContent = '–'+fmt(forn);
-  document.getElementById('sMarg').textContent = fmt(Math.max(0,marg));
-  document.getElementById('margPct').textContent = pct+'%';
-  document.getElementById('margEuro').textContent = fmt(Math.max(0,marg))+' di margine lordo stimato';
-  const fill = document.getElementById('margFill');
-  fill.style.width = Math.min(100,pct)+'%';
-  fill.style.background = pct >= 60 ? '#4a6741' : pct >= 40 ? '#b8922a' : '#7a2020';
+/* ── SIMULATORE MARGINE — MODELLO CORRETTO ── */
+
+const CONTRATTO = 500000;
+
+// Risorse LUM: [nome, oreMax (da contratto), forfait €/h Tab.n.2, patino €/h (placeholder 0)]
+const risorse = [
+  { nome:'Ric. Senior',    oreMax:1824, forfait:75,    patino:0, oreAtt:1824 },
+  { nome:'Legal Expert',   oreMax:768,  forfait:75,    patino:0, oreAtt:768  },
+  { nome:'Data Scientist', oreMax:1408, forfait:68.75, patino:0, oreAtt:1408 },
+  { nome:'SW Architect',   oreMax:2720, forfait:68.75, patino:0, oreAtt:2720 },
+  { nome:'IT Security',    oreMax:1120, forfait:68.75, patino:0, oreAtt:1120 },
+  { nome:'Frontend Dev',   oreMax:1152, forfait:50,    patino:0, oreAtt:1152 },
+  { nome:'Backend Dev',    oreMax:1408, forfait:50,    patino:0, oreAtt:1408 },
+  { nome:'PM (LUM)',       oreMax:247,  forfait:50,    patino:0, oreAtt:247  },
+];
+
+const inputStyleP = 'width:58px;text-align:right;border:1px solid var(--gold);border-radius:3px;padding:3px 5px;font-size:11px;background:var(--gold-light);color:var(--ink);font-weight:600;outline:none';
+const inputStyleO = 'width:58px;text-align:right;border:1px solid #4a6741;border-radius:3px;padding:3px 5px;font-size:11px;background:#eaf0e6;color:#2c3d2a;font-weight:600;outline:none';
+
+function fmtN(n) { return '€ ' + Math.abs(Math.round(n)).toLocaleString('it-IT'); }
+function fmtS(n) { return (n >= 0 ? '+ ' : '– ') + fmtN(n); }
+
+function buildMixTable() {
+  const tbody = document.getElementById('mixBody');
+  tbody.innerHTML = '';
+  risorse.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    const isLast = i === risorse.length - 1;
+    const bd = isLast ? '' : 'border-bottom:var(--border)';
+    const margH = r.patino > 0 ? (r.forfait - r.patino) : null;
+    const margHtxt = margH !== null
+      ? `<span style="color:${margH>=0?'#3a5030':'var(--danger)'};font-weight:600">${margH>=0?'+':'–'}€${Math.abs(margH).toFixed(2)}</span>`
+      : '<span style="color:var(--ink-light)">—</span>';
+    const costoR = r.patino > 0
+      ? `<span style="font-weight:600">€ ${Math.round(r.oreAtt * r.patino).toLocaleString('it-IT')}</span>`
+      : '<span style="color:var(--ink-light)">—</span>';
+    tr.innerHTML = `
+      <td style="padding:5px 6px;${bd};font-size:11px">${r.nome}</td>
+      <td style="text-align:right;padding:5px 4px;${bd};font-size:11px">€${r.forfait.toFixed(2)}</td>
+      <td style="text-align:center;padding:5px 4px;${bd};background:var(--gold-light)">
+        <input type="number" min="0" max="200" step="0.5" value="${r.patino||''}" placeholder="—"
+          style="${inputStyleP}" data-idx="${i}" oninput="onPatino(this)">
+      </td>
+      <td style="text-align:center;padding:5px 4px;${bd};font-size:11px">${r.oreMax.toLocaleString('it-IT')}</td>
+      <td style="text-align:center;padding:5px 4px;${bd};background:#eaf0e6">
+        <input type="number" min="0" max="${r.oreMax}" step="8" value="${r.oreAtt}"
+          style="${inputStyleO}" data-idx="${i}" oninput="onOre(this)">
+      </td>
+      <td style="text-align:right;padding:5px 4px;${bd}" id="mh_${i}">${margHtxt}</td>
+      <td style="text-align:right;padding:5px 4px;${bd}" id="cr_${i}">${costoR}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  updateFooter();
 }
+
+function onPatino(el) {
+  const i = parseInt(el.dataset.idx);
+  risorse[i].patino = parseFloat(el.value) || 0;
+  updateFooter();
+  calcM();
+}
+function onOre(el) {
+  const i = parseInt(el.dataset.idx);
+  const v = Math.min(risorse[i].oreMax, Math.max(0, parseInt(el.value)||0));
+  el.value = v;
+  risorse[i].oreAtt = v;
+  updateFooter();
+  calcM();
+}
+
+function updateFooter() {
+  let totOreMax=0, totOreAtt=0, totMargH=0, totCostoR=0, nPatino=0;
+  risorse.forEach((r,i) => {
+    totOreMax += r.oreMax;
+    totOreAtt += r.oreAtt;
+    const mh = r.patino > 0 ? r.forfait - r.patino : null;
+    const cr = r.patino > 0 ? r.oreAtt * r.patino : 0;
+    if (mh !== null) { totMargH += mh * r.oreAtt; nPatino++; }
+    totCostoR += cr;
+    // aggiorna celle riga
+    const mhEl = document.getElementById('mh_'+i);
+    const crEl = document.getElementById('cr_'+i);
+    if (mhEl) mhEl.innerHTML = r.patino > 0
+      ? `<span style="color:${mh>=0?'#3a5030':'var(--danger)'};font-weight:600">${mh>=0?'+':'–'}€${Math.abs(mh).toFixed(2)}</span>`
+      : '<span style="color:var(--ink-light)">—</span>';
+    if (crEl) crEl.innerHTML = r.patino > 0
+      ? `<span style="font-weight:600">€ ${Math.round(r.oreAtt*r.patino).toLocaleString('it-IT')}</span>`
+      : '<span style="color:var(--ink-light)">—</span>';
+  });
+  document.getElementById('tot_oremax').textContent = totOreMax.toLocaleString('it-IT');
+  document.getElementById('tot_oreatt').textContent = totOreAtt.toLocaleString('it-IT');
+  document.getElementById('tot_margH').innerHTML = nPatino > 0
+    ? `<span style="color:${totMargH>=0?'#3a5030':'var(--danger)'}">€ ${Math.round(totMargH).toLocaleString('it-IT')}</span>`
+    : '—';
+  document.getElementById('tot_costoR').textContent = nPatino > 0
+    ? '€ ' + Math.round(totCostoR).toLocaleString('it-IT') : '—';
+}
+
+function calcM() {
+  const forn   = parseFloat(document.getElementById('sForn').value) * 1000;
+  const cgPct  = parseFloat(document.getElementById('sCG').value) / 100;
+  const effPct = parseFloat(document.getElementById('sEff').value) / 100;
+
+  document.getElementById('outForn').textContent = '€ ' + Math.round(forn/1000) + 'k';
+  document.getElementById('outCG').textContent   = Math.round(cgPct*100) + '%';
+  document.getElementById('outEff').textContent  = Math.round(effPct*100) + '%';
+
+  // Costo reale personale: Σ (oreAtt × effPct × patino)
+  // effPct < 1 → le risorse lavorano meno ore → costo reale scende
+  let costoPersonale = 0, forfaitAttivato = 0;
+  const anyPatino = risorse.some(r => r.patino > 0);
+  risorse.forEach(r => {
+    costoPersonale += r.oreAtt * effPct * r.patino;
+    forfaitAttivato += r.oreAtt * r.forfait;
+  });
+
+  const costiGenerali = CONTRATTO * cgPct;
+  const margineNetto  = CONTRATTO - forn - costoPersonale - costiGenerali;
+  const marginePct    = (margineNetto / CONTRATTO) * 100;
+
+  // Copertura: quanta parte del forfait è coperta dal contratto
+  const copertura     = Math.min(forfaitAttivato, CONTRATTO);
+  const nonCoperto    = Math.max(0, forfaitAttivato - CONTRATTO);
+  const covPct        = Math.min(100, (forfaitAttivato / CONTRATTO) * 100);
+  const residuo       = CONTRATTO - forfaitAttivato;
+
+  // Margine €/h medio (solo risorse con Patino)
+  let totOreAtt = risorse.reduce((s,r) => s + r.oreAtt, 0);
+  let avgMargH  = totOreAtt > 0 && anyPatino
+    ? risorse.reduce((s,r) => s + (r.forfait - r.patino) * r.oreAtt, 0) / totOreAtt
+    : null;
+
+  // Schema logico
+  document.getElementById('sc_forn').textContent = '– € ' + Math.round(forn).toLocaleString('it-IT');
+  document.getElementById('sc_pers').textContent = anyPatino
+    ? '– € ' + Math.round(costoPersonale).toLocaleString('it-IT')
+    : '— inserire dati Patino ↓';
+  document.getElementById('sc_pers').style.color = anyPatino ? 'var(--danger)' : 'var(--gold)';
+  document.getElementById('sc_cg').textContent   = '– € ' + Math.round(costiGenerali).toLocaleString('it-IT');
+  const margEl = document.getElementById('sc_marg');
+  margEl.textContent = anyPatino ? '€ ' + Math.round(margineNetto).toLocaleString('it-IT') : '—';
+  margEl.style.color = margineNetto >= 150000 ? '#4ade80' : margineNetto >= 0 ? '#d4c97a' : '#f87171';
+
+  const gapVal = margineNetto - 150000;
+  const gapEl  = document.getElementById('sc_gap');
+  gapEl.textContent = anyPatino
+    ? (gapVal >= 0 ? '✓ obiettivo raggiunto (+€' : '✗ mancano €') + Math.abs(Math.round(gapVal)).toLocaleString('it-IT') + (gapVal>=0?')':'')
+    : '';
+  gapEl.style.color = gapVal >= 0 ? '#4ade80' : '#f87171';
+
+  // Copertura bar
+  document.getElementById('cov_val').textContent     = '€ ' + Math.round(forfaitAttivato).toLocaleString('it-IT');
+  document.getElementById('cov_bar').style.width     = Math.min(100, covPct) + '%';
+  document.getElementById('cov_bar').style.background= covPct <= 100 ? '#4a6741' : '#7a2020';
+  document.getElementById('cov_residuo').textContent = (residuo >= 0 ? '€ ' : '– € ') + Math.abs(Math.round(residuo)).toLocaleString('it-IT');
+  document.getElementById('cov_residuo').style.color = residuo >= 0 ? 'var(--accent)' : 'var(--danger)';
+  document.getElementById('cov_pct').textContent     = Math.round(covPct) + '%';
+  document.getElementById('cov_marg_h').textContent  = avgMargH !== null
+    ? (avgMargH >= 0 ? '+' : '') + '€ ' + avgMargH.toFixed(2) + '/h'
+    : '—';
+  document.getElementById('cov_marg_h').style.color  = avgMargH !== null
+    ? (avgMargH >= 0 ? 'var(--accent)' : 'var(--danger)') : 'var(--ink-light)';
+
+  // Risultati destra
+  const pctR = Math.round(marginePct);
+  document.getElementById('margPct').textContent = anyPatino ? pctR + '%' : '—';
+  document.getElementById('margPct').style.color = pctR >= 30 ? '#4a6741' : pctR >= 15 ? '#b8922a' : '#7a2020';
+  document.getElementById('margEuro').textContent = anyPatino
+    ? '€ ' + Math.round(margineNetto).toLocaleString('it-IT') + ' margine netto' : '— inserire dati Patino';
+
+  const gapR = Math.round(margineNetto - 150000);
+  const gapREl = document.getElementById('margGap');
+  gapREl.textContent = anyPatino
+    ? (gapR >= 0 ? '✓ +€' + Math.abs(gapR).toLocaleString('it-IT') + ' sopra target'
+                 : '✗ mancano €' + Math.abs(gapR).toLocaleString('it-IT'))
+    : '';
+  gapREl.style.color = gapR >= 0 ? 'var(--accent)' : 'var(--danger)';
+
+  const fillPct = Math.min(100, Math.max(0, marginePct / 60 * 100));
+  document.getElementById('margFill').style.width      = fillPct + '%';
+  document.getElementById('margFill').style.background = pctR >= 30 ? '#4a6741' : pctR >= 15 ? '#b8922a' : '#7a2020';
+
+  // Breakdown
+  document.getElementById('bd_forn').textContent  = '– € ' + Math.round(forn).toLocaleString('it-IT');
+  document.getElementById('bd_pers').textContent  = anyPatino ? '– € ' + Math.round(costoPersonale).toLocaleString('it-IT') : '—';
+  document.getElementById('bd_pers').style.color  = 'var(--danger)';
+  document.getElementById('bd_cg').textContent    = '– € ' + Math.round(costiGenerali).toLocaleString('it-IT');
+  const bdMarg = document.getElementById('bd_marg');
+  bdMarg.textContent = anyPatino ? '€ ' + Math.round(margineNetto).toLocaleString('it-IT') : '—';
+  bdMarg.style.color = margineNetto >= 150000 ? '#3a5030' : margineNetto >= 0 ? '#b8922a' : 'var(--danger)';
+
+  document.getElementById('bd_forfait').textContent = '€ ' + Math.round(forfaitAttivato).toLocaleString('it-IT');
+  document.getElementById('bd_cov').textContent     = '€ ' + Math.round(copertura).toLocaleString('it-IT');
+  document.getElementById('bd_uncov').textContent   = nonCoperto > 0
+    ? '€ ' + Math.round(nonCoperto).toLocaleString('it-IT') + ' (fuori contratto)'
+    : '— tutto coperto ✓';
+  document.getElementById('bd_uncov').style.color   = nonCoperto > 0 ? 'var(--gold)' : '#3a5030';
+
+  // Grafico
+  if (window.scenariChartInst) {
+    window.scenariChartInst.data.datasets[0].data = [
+      Math.round(forn),
+      anyPatino ? Math.round(costoPersonale) : 0,
+      Math.round(costiGenerali),
+      anyPatino ? Math.round(margineNetto) : 0
+    ];
+    window.scenariChartInst.data.datasets[0].backgroundColor = [
+      '#8a8a84','#c5877a','#b8922a',
+      margineNetto >= 150000 ? '#4a6741' : margineNetto >= 0 ? '#7a9c74' : '#7a2020'
+    ];
+    window.scenariChartInst.update();
+  }
+}
+
+// Ottimizzatore greedy: attiva le risorse con margine/h più alto finché il costo reale
+// non supera (CONTRATTO - forn - costiGenerali - target_margine)
+function ottimizza() {
+  const forn  = parseFloat(document.getElementById('sForn').value) * 1000;
+  const cgPct = parseFloat(document.getElementById('sCG').value) / 100;
+  const effPct= parseFloat(document.getElementById('sEff').value) / 100;
+  const anyPatino = risorse.some(r => r.patino > 0);
+
+  if (!anyPatino) {
+    document.getElementById('ottMsg').textContent = '⚠ Inserisci almeno un costo Patino per ottimizzare';
+    document.getElementById('ottMsg').style.color = 'var(--danger)';
+    return;
+  }
+
+  const costiGenerali = CONTRATTO * cgPct;
+  const budgetPersonale = CONTRATTO - forn - costiGenerali - 150000; // lascia €150k di margine
+
+  if (budgetPersonale <= 0) {
+    document.getElementById('ottMsg').textContent = '⚠ Con questi parametri non resta budget per il personale — riduci fornitori o costi generali';
+    document.getElementById('ottMsg').style.color = 'var(--danger)';
+    return;
+  }
+
+  // Ordina risorse per margine/h decrescente (forfait - patino), considera solo patino > 0
+  const sorted = risorse
+    .map((r, i) => ({ ...r, i, margH: r.patino > 0 ? r.forfait - r.patino : -9999 }))
+    .sort((a, b) => b.margH - a.margH);
+
+  // Azzera tutte le ore attivate
+  risorse.forEach(r => r.oreAtt = 0);
+
+  let budgetRimasto = budgetPersonale;
+  sorted.forEach(sr => {
+    if (sr.patino <= 0) return;
+    const costoPerOra = sr.patino * effPct;
+    if (costoPerOra <= 0) return;
+    const oreMax = sr.oreMax;
+    const oreAffrontabili = Math.floor(budgetRimasto / costoPerOra);
+    const oreAtt = Math.min(oreMax, oreAffrontabili);
+    risorse[sr.i].oreAtt = oreAtt;
+    budgetRimasto -= oreAtt * costoPerOra;
+  });
+
+  // Aggiorna gli input nella tabella
+  document.querySelectorAll('#mixBody input[type=number][data-idx]').forEach(el => {
+    const i = parseInt(el.dataset.idx);
+    if (el.style.background.includes('eaf0e6') || el.style.background === 'rgb(234, 240, 230)') {
+      el.value = risorse[i].oreAtt;
+    }
+  });
+
+  // Rebuild per aggiornare le celle
+  buildMixTable();
+  document.getElementById('ottMsg').textContent = '✓ Mix ottimizzato: risorse con margine/h più alto attivate per prime, budget personale massimizzato';
+  document.getElementById('ottMsg').style.color = '#3a5030';
+  calcM();
+}
+
+window.scenariChartInst = new Chart(document.getElementById('scenariChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Fornitori', 'Costo personale', 'Costi generali', 'Margine netto'],
+    datasets: [{
+      data: [133000, 0, 75000, 0],
+      backgroundColor: ['#8a8a84','#c5877a','#b8922a','#4a6741'],
+      barPercentage: 0.65
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      x: { grid:{display:false}, border:{display:false} },
+      y: { grid:{color:gridColor}, border:{display:false},
+           ticks:{ callback: v => '€'+(v/1000).toFixed(0)+'k' } }
+    },
+    plugins: {
+      legend: {display:false},
+      tooltip: { callbacks: { label: ctx => '€ '+Math.abs(ctx.raw).toLocaleString('it-IT') } }
+    }
+  }
+});
+
+buildMixTable();
 calcM();
 </script>
 </body>
