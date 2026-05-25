@@ -16,11 +16,11 @@
   --ink-faint: #e8e6e0;
   --paper: #faf9f6;
   --paper-warm: #f3f1eb;
-  --accent: #4a6741;
-  --accent-light: #eaf0e6;
+  --accent: #1f6b2e;
+  --accent-light: #d4f0da;
   --gold: #b8922a;
   --gold-light: #f7f1e4;
-  --success: #2d5a3d;
+  --success: #135224;
   --danger: #7a2020;
   --serif: 'Montserrat', sans-serif;
   --sans: 'Montserrat', sans-serif;
@@ -49,11 +49,11 @@ body {
   padding: 0;
   position: relative;
   overflow: hidden;
-  background: #2c3d2a;
+  background: #134d1f;
 }
 .cover-bg {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, #2c3d2a 0%, #3a4f35 40%, #1e2d1c 100%);
+  background: linear-gradient(135deg, #134d1f 0%, #1a5c28 40%, #0a3314 100%);
 }
 .cover-bg::after {
   content: "";
@@ -124,7 +124,7 @@ nav {
   white-space: nowrap; text-decoration: none;
 }
 .nav-link:hover { color: var(--ink); }
-.nav-link.active { color: #4a6741; border-bottom-color: #4a6741; font-weight: 700; }
+.nav-link.active { color: #1f6b2e; border-bottom-color: #1f6b2e; font-weight: 700; }
 
 /* ── SECTIONS ── */
 .section { max-width: 1100px; margin: 0 auto; padding: 40px 64px; }
@@ -134,7 +134,7 @@ nav {
   color: var(--ink-light); text-transform: uppercase; margin-bottom: 12px;
 }
 .section-title { font-size: 36px; font-weight: 600; color: var(--ink); margin-bottom: 28px; line-height: 1.15; }
-.section-title em { font-style: normal; color: #4a6741; font-weight: 900; }
+.section-title em { font-style: normal; color: #1f6b2e; font-weight: 900; }
 
 /* ── GRID ── */
 .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--ink-faint); border: 1px solid var(--ink-faint); margin-bottom: 28px; }
@@ -142,7 +142,7 @@ nav {
 .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--ink-faint); border: 1px solid var(--ink-faint); margin-bottom: 28px; }
 .metric { background: var(--paper); padding: 18px 20px; }
 .metric-val { font-size: 30px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 6px; }
-.metric-val.accent { color: #4a6741; }
+.metric-val.accent { color: #1f6b2e; }
 .metric-val.gold { color: var(--gold); }
 .metric-val.success { color: var(--success); }
 .metric-lbl { font-size: 10px; font-weight: 700; color: var(--ink-light); letter-spacing: 0.06em; }
@@ -158,12 +158,12 @@ nav {
 .data-table td { padding: 9px 14px; border-bottom: var(--border); color: var(--ink); vertical-align: middle; font-weight: 400; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: var(--paper-warm); }
-.data-table .total-row td { font-weight: 500; border-top: 2px solid var(--ink-faint); border-bottom: none; background: #eaf0e6; color: #4a6741; }
+.data-table .total-row td { font-weight: 500; border-top: 2px solid var(--ink-faint); border-bottom: none; background: #d4f0da; color: #1f6b2e; }
 .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--sans); font-weight: 600; }
 .badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 2px; }
-.badge-blue { background: #eaf0e6; color: #4a6741; }
+.badge-blue { background: #d4f0da; color: #1f6b2e; }
 .badge-gold { background: var(--gold-light); color: var(--gold); }
-.badge-green { background: #eaf3e8; color: var(--success); }
+.badge-green { background: #ccecd5; color: var(--success); }
 .badge-red { background: #f5eaea; color: var(--danger); }
 .badge-neutral { background: var(--paper-warm); color: var(--ink-mid); }
 .badge-gray { background: #ebebeb; color: #666; }
@@ -172,7 +172,7 @@ nav {
 .or-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
 .or-card { border: var(--border); border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden; }
 .or-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
-.or-card.ri::before { background: #4a6741; }
+.or-card.ri::before { background: #1f6b2e; }
 .or-card.ss::before { background: var(--gold); }
 .or-card.ip::before { background: var(--ink-light); }
 .or-number { font-size: 9px; font-weight: 900; letter-spacing: 0.2em; color: var(--ink-light); text-transform: uppercase; margin-bottom: 8px; }
@@ -198,14 +198,14 @@ nav {
   padding: 18px 16px; position: relative; overflow: hidden;
 }
 .fascia-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
-.fascia-card.f1::before { background: #4a6741; }
+.fascia-card.f1::before { background: #1f6b2e; }
 .fascia-card.f2::before { background: var(--gold); }
-.fascia-card.f3::before { background: #7a9c74; }
+.fascia-card.f3::before { background: #3fa050; }
 .fascia-card.f4::before { background: var(--ink-light); }
 .fascia-label { font-size: 9px; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
-.fascia-label.f1 { color: #4a6741; }
+.fascia-label.f1 { color: #1f6b2e; }
 .fascia-label.f2 { color: var(--gold); }
-.fascia-label.f3 { color: #7a9c74; }
+.fascia-label.f3 { color: #3fa050; }
 .fascia-label.f4 { color: var(--ink-light); }
 .fascia-exp { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 12px; line-height: 1.3; }
 .fascia-rate { font-size: 26px; font-weight: 600; color: var(--ink); line-height: 1; }
@@ -223,18 +223,18 @@ nav {
 .profile-table tr:hover td { background: var(--paper-warm); }
 .profile-avatar {
   width: 32px; height: 32px; border-radius: 50%;
-  background: #eaf0e6; color: #4a6741;
+  background: #d4f0da; color: #1f6b2e;
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 500; letter-spacing: 0.04em; flex-shrink: 0;
 }
 .profile-avatar.av2 { background: var(--gold-light); color: var(--gold); }
-.profile-avatar.av3 { background: #e8f0e6; color: #7a9c74; }
+.profile-avatar.av3 { background: #e8f0e6; color: #3fa050; }
 .profile-avatar.av4 { background: var(--paper-warm); color: var(--ink-light); }
 .rate-chip {
   display: inline-block; font-size: 12px; font-weight: 600;
   padding: 3px 10px; border-radius: 20px;
 }
-.rate-chip.f1 { background: #eaf0e6; color: #3a5030; }
+.rate-chip.f1 { background: #d4f0da; color: #165422; }
 .rate-chip.f2 { background: var(--gold-light); color: #7a5a10; }
 .rate-chip.f3 { background: #e8f0e6; color: #5a7a54; }
 .rate-chip.f4 { background: var(--paper-warm); color: var(--ink-mid); }
@@ -258,17 +258,17 @@ nav {
 .sim-slider-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-mid); margin-bottom: 8px; }
 .sim-slider-val { font-weight: 500; color: var(--ink); }
 input[type=range] { width: 100%; -webkit-appearance: none; height: 1px; background: var(--ink-faint); outline: none; cursor: pointer; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #4a6741; cursor: pointer; border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--accent); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #1f6b2e; cursor: pointer; border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--accent); }
 .sim-results { margin-top: 24px; border-top: var(--border); padding-top: 20px; }
 .sim-result-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 13px; border-bottom: 1px dotted var(--ink-faint); }
 .sim-result-row:last-child { border-bottom: none; font-weight: 600; font-size: 14px; }
 .sim-result-label { color: var(--ink-mid); }
 .sim-result-val { font-variant-numeric: tabular-nums; }
-.sim-result-val.pos { color: #3a5030; }
+.sim-result-val.pos { color: #165422; }
 .sim-result-val.neg { color: var(--danger); }
 .margine-track { height: 4px; background: var(--ink-faint); border-radius: 2px; margin-top: 16px; overflow: hidden; }
 .margine-fill { height: 100%; border-radius: 2px; transition: width 0.35s ease, background 0.35s ease; }
-.margine-pct { font-size: 48px; font-weight: 600; color: #4a6741; line-height: 1; margin-top: 16px; }
+.margine-pct { font-size: 48px; font-weight: 600; color: #1f6b2e; line-height: 1; margin-top: 16px; }
 .margine-label { font-size: 11px; font-weight: 700; color: var(--ink-light); letter-spacing: 0.1em; margin-top: 4px; }
 .margine-euro { font-size: 20px; color: var(--ink-mid); margin-top: 8px; font-weight: 600; }
 
@@ -277,11 +277,11 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--ink-faint); }
 .tl-item { position: relative; margin-bottom: 20px; }
 .tl-item:last-child { margin-bottom: 0; }
-.tl-dot { position: absolute; left: -24px; top: 4px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #4a6741; background: var(--paper); }
-.tl-dot.filled { background: #4a6741; }
+.tl-dot { position: absolute; left: -24px; top: 4px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #1f6b2e; background: var(--paper); }
+.tl-dot.filled { background: #1f6b2e; }
 .tl-date { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 4px; }
 .tl-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
-.tl-amount { font-size: 20px; font-weight: 600; color: #4a6741; }
+.tl-amount { font-size: 20px; font-weight: 600; color: #1f6b2e; }
 .tl-sub { font-size: 12px; color: var(--ink-light); margin-top: 2px; }
 
 /* ── SCHEMA LOGICO ── */
@@ -289,19 +289,19 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 .schema-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 18px; gap: 16px; }
 .schema-top { background: var(--paper-warm); border-bottom: 2px solid var(--ink-faint); }
 .schema-minus { border-bottom: var(--border); }
-.schema-sub { background: #eaf0e6; border-bottom: 2px solid #c5d4be; }
+.schema-sub { background: #d4f0da; border-bottom: 2px solid #7ac489; }
 .schema-spacer { height: 8px; background: var(--paper-warm); border-bottom: var(--border); }
 .schema-delta { border-bottom: 1px dotted var(--ink-faint); padding: 10px 18px; }
-.schema-total { background: #2c3d2a; border-top: 2px solid #1e2d1c; }
+.schema-total { background: #134d1f; border-top: 2px solid #0a3314; }
 .schema-total .schema-label { color: rgba(255,255,255,0.85); font-weight:700; }
 .schema-label { font-size: 13px; color: var(--ink-mid); flex: 1; line-height: 1.4; }
 .schema-val { font-size: 14px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .schema-val-big { font-size: 20px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .schema-val.neg, .schema-val-big.neg { color: var(--danger); }
-.schema-val.pos, .schema-val-big.pos { color: #3a5030; }
+.schema-val.pos, .schema-val-big.pos { color: #165422; }
 .schema-val.accent { color: var(--accent); }
 .schema-total .schema-val-big { color: #d4c97a; }
-.delta-num { display: inline-block; background: #4a6741; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; margin-right: 8px; letter-spacing: 0.05em; }
+.delta-num { display: inline-block; background: #1f6b2e; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; margin-right: 8px; letter-spacing: 0.05em; }
 .delta-sub { display: block; font-size: 11px; color: var(--ink-light); margin-top: 3px; margin-left: 36px; }
 
 /* ── BD ROWS ── */
@@ -324,10 +324,10 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 /* ── STRATEGY CARDS ── */
 .strategy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
 .strategy-card { border: var(--border); border-radius: var(--radius); padding: 24px; }
-.strategy-num { font-size: 40px; font-weight: 900; color: #c5d4be; line-height: 1; margin-bottom: 12px; }
+.strategy-num { font-size: 40px; font-weight: 900; color: #7ac489; line-height: 1; margin-bottom: 12px; }
 .strategy-title { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
 .strategy-body { font-size: 12px; font-weight: 400; color: var(--ink-mid); line-height: 1.6; }
-.strategy-delta { margin-top: 12px; padding-top: 12px; border-top: var(--border); font-size: 20px; font-weight: 600; color: #3a5030; }
+.strategy-delta { margin-top: 12px; padding-top: 12px; border-top: var(--border); font-size: 20px; font-weight: 600; color: #165422; }
 .strategy-delta-lbl { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-light); font-weight: 500; }
 
 /* ── WARNING BOX ── */
@@ -336,7 +336,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 .warning-box strong { font-size: 12px; letter-spacing: 0.06em; color: var(--gold); text-transform: uppercase; font-weight: 500; }
 
 /* ── FOOTER ── */
-footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
+footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
 .footer-brand { font-size: 24px; font-weight: 500; color: rgba(255,255,255,0.9); }
 .footer-meta { text-align: right; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 2; letter-spacing: 0.05em; }
 
@@ -709,7 +709,7 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
       <span class="schema-label">= MARGINE NETTO LUMEN</span>
       <span class="schema-val-big" id="sc_marg" style="color:#d4c97a">€ 500.000</span>
     </div>
-    <div class="schema-row" style="padding:8px 18px 12px;background:#2c3d2a">
+    <div class="schema-row" style="padding:8px 18px 12px;background:#134d1f">
       <span style="font-size:11px;color:rgba(255,255,255,0.4)">obiettivo ≥ <strong style="color:#d4c97a">30%</strong> su €500k = <strong style="color:#d4c97a">€150.000</strong></span>
       <span style="font-size:13px;font-weight:700" id="sc_gap"></span>
     </div>
@@ -741,7 +741,7 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
           <thead><tr>
             <th style="text-align:left;padding:6px 6px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Profilo</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Ore max</th>
-            <th style="text-align:center;padding:6px 4px;background:#eaf0e6;border-bottom:2px solid var(--ink-faint);color:#4a6741;font-weight:700">% utilizzo ✏</th>
+            <th style="text-align:center;padding:6px 4px;background:#d4f0da;border-bottom:2px solid var(--ink-faint);color:#1f6b2e;font-weight:700">% utilizzo ✏</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Ore reali</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">€/h forfait</th>
             <th style="text-align:center;padding:6px 4px;background:var(--gold-light);border-bottom:2px solid var(--ink-faint);color:var(--gold);font-weight:700">€/h Patino ✏</th>
@@ -753,7 +753,7 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
             <tr style="border-top:2px solid var(--ink-faint);background:var(--paper-warm)">
               <td style="padding:7px 6px;font-weight:700">TOTALE</td>
               <td style="text-align:right;padding:7px 4px;font-weight:600" id="tot_oremax">—</td>
-              <td style="text-align:center;padding:7px 4px;background:#eaf0e6;font-weight:700" id="tot_util">—</td>
+              <td style="text-align:center;padding:7px 4px;background:#d4f0da;font-weight:700" id="tot_util">—</td>
               <td style="text-align:right;padding:7px 4px;font-weight:600" id="tot_orereali">—</td>
               <td></td>
               <td style="background:var(--gold-light)"></td>
@@ -764,7 +764,7 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
         </table>
       </div>
 
-      <button onclick="ottimizza()" style="margin-top:14px;width:100%;padding:10px;background:#2c3d2a;color:#d4c97a;border:none;border-radius:var(--radius);font-size:12px;font-weight:700;letter-spacing:0.08em;cursor:pointer;text-transform:uppercase">
+      <button onclick="ottimizza()" style="margin-top:14px;width:100%;padding:10px;background:#134d1f;color:#d4c97a;border:none;border-radius:var(--radius);font-size:12px;font-weight:700;letter-spacing:0.08em;cursor:pointer;text-transform:uppercase">
         ⚡ Ottimizza mix — massimizza margine restando in €500k
       </button>
       <div id="ottMsg" style="font-size:11px;color:var(--ink-light);margin-top:6px;text-align:center;min-height:16px"></div>
@@ -786,7 +786,7 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
           <span>0%</span><span style="color:var(--accent);font-weight:700">▼ obiettivo 30%</span><span>60%</span>
         </div>
         <div class="margine-track" style="height:10px">
-          <div class="margine-fill" id="margFill" style="width:100%;background:#4a6741"></div>
+          <div class="margine-fill" id="margFill" style="width:100%;background:#1f6b2e"></div>
         </div>
         <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);width:2px;height:10px;background:var(--gold);opacity:0.7"></div>
       </div>
@@ -805,9 +805,9 @@ footer { background: #2c3d2a; padding: 32px 64px; display: flex; justify-content
           </div>
           <span class="bd-val neg" id="bd_pers">– € 0</span>
         </div>
-        <div class="bd-row" style="background:#eaf0e6">
+        <div class="bd-row" style="background:#d4f0da">
           <span class="bd-label" style="font-weight:700;color:var(--ink)">= Margine netto</span>
-          <span class="bd-val" id="bd_marg" style="font-size:16px;font-weight:700;color:#3a5030">€ 500.000</span>
+          <span class="bd-val" id="bd_marg" style="font-size:16px;font-weight:700;color:#165422">€ 500.000</span>
         </div>
       </div>
 
@@ -937,7 +937,7 @@ new Chart(document.getElementById('finChart'), {
   data: {
     labels: ['Ricerca industriale','Sviluppo sperimentale','Inv. produttivi'],
     datasets: [
-      { label: 'Investimento ammesso', data: [1055089,430820,10000], backgroundColor: '#4a6741', barPercentage: 0.55 },
+      { label: 'Investimento ammesso', data: [1055089,430820,10000], backgroundColor: '#1f6b2e', barPercentage: 0.55 },
       { label: 'Agevolazione concessa', data: [791317,215410,4500], backgroundColor: '#b8922a', barPercentage: 0.55 }
     ]
   },
@@ -959,9 +959,9 @@ new Chart(document.getElementById('salChart'), {
     labels: ['ott 2023','dic 2025','lug 2026','mar 2027','ott 2027'],
     datasets: [{
       data: [0,150000,200000,400000,500000],
-      borderColor: '#4a6741', backgroundColor: 'rgba(74,103,65,0.06)',
+      borderColor: '#1f6b2e', backgroundColor: 'rgba(74,103,65,0.06)',
       fill: true, tension: 0.35,
-      pointBackgroundColor: '#4a6741', pointRadius: 5, pointHoverRadius: 7, borderWidth: 1.5
+      pointBackgroundColor: '#1f6b2e', pointRadius: 5, pointHoverRadius: 7, borderWidth: 1.5
     }]
   },
   options: {
@@ -998,9 +998,9 @@ const styleP = [
 ].join(';');
 
 const styleU = [
-  'width:52px','text-align:right','border:2px solid #4a6741',
+  'width:52px','text-align:right','border:2px solid #1f6b2e',
   'border-radius:4px','padding:4px 5px','font-size:12px',
-  'background:#eaf0e6','color:#2c3d2a','font-weight:700','outline:none','cursor:text'
+  'background:#d4f0da','color:#134d1f','font-weight:700','outline:none','cursor:text'
 ].join(';');
 
 function oreReali(r) { return Math.round(r.oreMax * r.utilizzo / 100); }
@@ -1018,12 +1018,12 @@ function buildMixTable() {
     const mh = margineH(r);
     const isLast = i === risorse.length - 1;
     const bd = isLast ? '' : 'border-bottom:var(--border)';
-    const mhColor = mh > 0 ? '#3a5030' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
+    const mhColor = mh > 0 ? '#165422' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="padding:5px 6px;${bd};font-size:11px">${r.nome}</td>
       <td style="text-align:right;padding:5px 4px;${bd}">${r.oreMax.toLocaleString('it-IT')}</td>
-      <td style="text-align:center;padding:5px 4px;${bd};background:#eaf0e6">
+      <td style="text-align:center;padding:5px 4px;${bd};background:#d4f0da">
         <input type="number" min="0" max="100" step="5" value="${r.utilizzo}"
           style="${styleU}" data-idx="${i}" data-field="utilizzo" oninput="onInput(this)">%
       </td>
@@ -1054,7 +1054,7 @@ function onInput(el) {
   const or = oreReali(risorse[i]);
   const cr = costoRisorsa(risorse[i]);
   const mh = margineH(risorse[i]);
-  const mhColor = mh > 0 ? '#3a5030' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
+  const mhColor = mh > 0 ? '#165422' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
   if (document.getElementById('or_' + i))
     document.getElementById('or_' + i).textContent = or.toLocaleString('it-IT');
   if (document.getElementById('mh_' + i)) {
@@ -1078,7 +1078,7 @@ function updateFooter() {
   document.getElementById('tot_orereali').textContent = totOreReali.toLocaleString('it-IT');
   const tmEl = document.getElementById('tot_margh');
   tmEl.textContent = (totMargH >= 0 ? '+ ' : '– ') + '€ ' + Math.abs(Math.round(totMargH)).toLocaleString('it-IT');
-  tmEl.style.color = totMargH >= 0 ? '#3a5030' : 'var(--danger)';
+  tmEl.style.color = totMargH >= 0 ? '#165422' : 'var(--danger)';
   document.getElementById('tot_costo').textContent = '€ ' + Math.round(totCosto).toLocaleString('it-IT');
 }
 
@@ -1106,7 +1106,7 @@ function calcM() {
 
   // Risultati destra
   document.getElementById('margPct').textContent  = pctR + '%';
-  document.getElementById('margPct').style.color  = pctR >= 30 ? '#4a6741' : pctR >= 15 ? '#b8922a' : '#7a2020';
+  document.getElementById('margPct').style.color  = pctR >= 30 ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
   document.getElementById('margEuro').textContent = '€ ' + Math.round(margineNetto).toLocaleString('it-IT') + ' margine netto';
 
   const gapR   = Math.round(gapVal);
@@ -1118,14 +1118,14 @@ function calcM() {
 
   const fillPct = Math.min(100, Math.max(0, marginePct / 60 * 100));
   document.getElementById('margFill').style.width      = fillPct + '%';
-  document.getElementById('margFill').style.background = pctR >= 30 ? '#4a6741' : pctR >= 15 ? '#b8922a' : '#7a2020';
+  document.getElementById('margFill').style.background = pctR >= 30 ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
 
   // Breakdown
   document.getElementById('bd_forn').textContent = '– € ' + Math.round(forn).toLocaleString('it-IT');
   document.getElementById('bd_pers').textContent = '– € ' + Math.round(costoPersonale).toLocaleString('it-IT');
   const bdMarg = document.getElementById('bd_marg');
   bdMarg.textContent = '€ ' + Math.round(margineNetto).toLocaleString('it-IT');
-  bdMarg.style.color = margineNetto >= 150000 ? '#3a5030' : margineNetto >= 0 ? '#b8922a' : 'var(--danger)';
+  bdMarg.style.color = margineNetto >= 150000 ? '#165422' : margineNetto >= 0 ? '#b8922a' : 'var(--danger)';
 
   // Grafico
   if (window.scenariChartInst) {
@@ -1136,7 +1136,7 @@ function calcM() {
     ];
     window.scenariChartInst.data.datasets[0].backgroundColor = [
       '#8a8a84', '#c5877a',
-      margineNetto >= 150000 ? '#4a6741' : margineNetto >= 0 ? '#7a9c74' : '#7a2020'
+      margineNetto >= 150000 ? '#1f6b2e' : margineNetto >= 0 ? '#3fa050' : '#7a2020'
     ];
     window.scenariChartInst.update();
   }
@@ -1183,7 +1183,7 @@ function ottimizza() {
   buildMixTable();
   calcM();
   document.getElementById('ottMsg').textContent = '✓ Mix ottimizzato: risorse con margine/h negativo azzerate, budget allocato per massimizzare margine';
-  document.getElementById('ottMsg').style.color = '#3a5030';
+  document.getElementById('ottMsg').style.color = '#165422';
 }
 
 window.scenariChartInst = new Chart(document.getElementById('scenariChart'), {
@@ -1192,7 +1192,7 @@ window.scenariChartInst = new Chart(document.getElementById('scenariChart'), {
     labels: ['Fornitori', 'Costo personale', 'Margine netto'],
     datasets: [{
       data: [0, 0, 500000],
-      backgroundColor: ['#8a8a84', '#c5877a', '#4a6741'],
+      backgroundColor: ['#8a8a84', '#c5877a', '#1f6b2e'],
       barPercentage: 0.65
     }]
   },
