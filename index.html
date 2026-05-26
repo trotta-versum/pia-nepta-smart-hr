@@ -558,6 +558,143 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
   <div class="chart-container reveal" style="height:280px">
     <canvas id="finChart" role="img" aria-label="Confronto investimento e agevolazione per tipologia">Ricerca industriale: 1.055.089 investito, 791.317 agevolazione. Sviluppo sperimentale: 430.820 e 215.410. Investimenti produttivi: 10.000 e 4.500.</canvas>
   </div>
+
+  <!-- DISTRIBUZIONE INVESTIMENTO PER OR -->
+  <div class="reveal" style="margin-top:28px">
+    <p style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-light);margin-bottom:16px">Distribuzione investimento ammesso per Obiettivo Realizzativo</p>
+
+    <!-- NOTE DI PERIMETRO -->
+    <details style="margin-bottom:20px;border-left:3px solid #1f6b2e;border-radius:0 3px 3px 0;background:#f0f8f2;overflow:hidden">
+      <summary style="padding:10px 18px;cursor:pointer;font-size:12px;font-weight:700;color:#1f6b2e;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none">
+        <span>&#9432; Nota metodologica</span>
+        <span style="font-size:10px;font-weight:400;color:var(--ink-light)">espandi ▼</span>
+      </summary>
+      <div style="padding:10px 18px 14px;font-size:12px;color:var(--ink-mid);line-height:1.65;border-top:1px solid #c8e8d0">
+        OR1+OR2 = <strong>€1.055.090</strong> coincide con il totale Ricerca Industriale PIA (€1.055.089). OR3 non ha una linea di investimento autonoma: i €286k rappresentano il valore che LUMEN attribuisce a quell'OR nel contratto da €500k. Il totale ammesso di <strong>€1.495.909</strong> si divide tra: Ricerca Industriale (€1.055.089 · 75%), Sviluppo Sperimentale (€430.820 · 50%) e Investimenti Produttivi (€10.000 · 45%). Contratto NEPTA–LUMEN: <strong>€500.000</strong> (quota di ricerca affidata esternamente da Nepta su €1.495.909 totali ammessi).
+      </div>
+    </details>
+
+    <!-- BARRE DISTRIBUZIONE -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+      <!-- OR1 -->
+      <div style="border:1px solid var(--ink-faint);border-radius:3px;padding:16px 18px;position:relative;overflow:hidden">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#1f6b2e"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <span style="font-size:9px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:#1f6b2e">OR1 · Ricerca Industriale</span>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Smart Organizational Models</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px;font-weight:600;color:var(--ink)">€527.545</div>
+            <div style="font-size:10px;color:var(--ink-light)">35,3% del totale</div>
+          </div>
+        </div>
+        <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:35.3%;background:#1f6b2e;border-radius:3px;transition:width 1s ease"></div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--ink-light)">
+          <span>Agevolazione: <strong style="color:#135224">€395.659</strong></span>
+          <span>Intensità: <strong>75%</strong></span>
+        </div>
+      </div>
+
+      <!-- OR2 -->
+      <div style="border:1px solid var(--ink-faint);border-radius:3px;padding:16px 18px;position:relative;overflow:hidden">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#2a8a3e"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <span style="font-size:9px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:#2a8a3e">OR2 · Ricerca Industriale</span>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Strumenti AI per la HR</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px;font-weight:600;color:var(--ink)">€527.545</div>
+            <div style="font-size:10px;color:var(--ink-light)">35,3% del totale</div>
+          </div>
+        </div>
+        <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:35.3%;background:#2a8a3e;border-radius:3px"></div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--ink-light)">
+          <span>Agevolazione: <strong style="color:#135224">€395.659</strong></span>
+          <span>Intensità: <strong>75%</strong></span>
+        </div>
+      </div>
+
+      <!-- OR3 -->
+      <div style="border:1px solid var(--ink-faint);border-radius:3px;padding:16px 18px;position:relative;overflow:hidden;background:#fafaf8">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#4aaa5e"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <span style="font-size:9px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:#4aaa5e">OR3 · Ricerca Industriale</span>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Scouting di Mercato</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px;font-weight:600;color:var(--ink-mid)">€286k</div>
+            <div style="font-size:10px;color:var(--ink-light)">valore strategico interno</div>
+          </div>
+        </div>
+        <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:19.1%;background:#4aaa5e;border-radius:3px;opacity:0.6"></div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--ink-light);line-height:1.5">
+          <span style="display:inline-block;background:#f0f8f2;border:1px solid #b8ddc0;color:#1f6b2e;font-weight:700;font-size:9px;letter-spacing:0.06em;padding:2px 8px;border-radius:2px;margin-right:6px">TRASVERSALE</span>
+          OR incluso nel totale RI · valorizzato come contributo AI/Data LUMEN (€286k su €500k contratto)
+        </div>
+      </div>
+
+      <!-- OR4 -->
+      <div style="border:1px solid var(--ink-faint);border-radius:3px;padding:16px 18px;position:relative;overflow:hidden">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#b8922a"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <span style="font-size:9px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:#8a5e0a">OR4 · Sviluppo Sperimentale</span>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Piattaforma Prototipale</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px;font-weight:600;color:var(--ink)">€430.820</div>
+            <div style="font-size:10px;color:var(--ink-light)">28,8% del totale</div>
+          </div>
+        </div>
+        <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:28.8%;background:#b8922a;border-radius:3px"></div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--ink-light)">
+          <span>Agevolazione: <strong style="color:#7a5a10">€215.410</strong></span>
+          <span>Intensità: <strong>50%</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRA TOTALE UNICA -->
+    <div style="border:1px solid var(--ink-faint);border-radius:3px;padding:16px 18px;margin-bottom:4px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:var(--ink)">Investimento totale ammesso</span>
+        <span style="font-size:18px;font-weight:600;color:var(--ink)">€1.495.909</span>
+      </div>
+      <div style="height:20px;background:#e8e6e0;border-radius:3px;overflow:hidden;display:flex">
+        <div style="height:100%;width:35.3%;background:#1f6b2e;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR1 35%</span>
+        </div>
+        <div style="height:100%;width:35.3%;background:#2a8a3e;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR2 35%</span>
+        </div>
+        <div style="height:100%;width:28.8%;background:#b8922a;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR4 29%</span>
+        </div>
+        <div style="height:100%;flex:1;background:#8a8a84;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:7px;color:#fff">IP</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--ink-light)">
+        <span>Agevolazione totale: <strong style="color:#135224">€1.011.227</strong></span>
+        <span>Quota privata minima Nepta: <strong>€619k</strong></span>
+        <span>Contratto LUMEN: <strong>€500.000</strong></span>
+      </div>
+    </div>
+  </div>
+
+
 </section>
 
 <!-- 3. OBIETTIVI REALIZZATIVI -->
@@ -577,6 +714,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <div class="or-title">Smart Organizational Models</div>
         <div class="or-meta"><span>M0 → M18</span><span>Resp. Scientifico · Data Scientist</span></div>
         <div class="or-value">€527.545</div>
+        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €395.659</div>
         <div class="or-tasks">
           <div class="or-task"><span>A1.1 – Scenari correnti e nuove tendenze (AS-IS)</span><span class="or-task-period">M0→M6</span></div>
           <div class="or-task"><span>A1.2 – Processi Smart HR (TO-BE) e Change Management</span><span class="or-task-period">M4→M18</span></div>
@@ -623,6 +761,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <div class="or-title">Strumenti di Intelligenza Artificiale per la Human Resource</div>
         <div class="or-meta"><span>M2 → M24</span><span>Data Scientist · SW Architect · Backend Dev</span></div>
         <div class="or-value">€527.545</div>
+        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €395.659</div>
         <div class="or-tasks">
           <div class="or-task"><span>A2.1 – Technology Assessment</span><span class="or-task-period">M2→M6</span></div>
           <div class="or-task"><span>A2.2 – Estrazione contenuti e strutture dati</span><span class="or-task-period">M4→M12</span></div>
@@ -680,6 +819,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <div class="or-title">Strumenti per lo Scouting di Scenari ed Opportunità di Mercato</div>
         <div class="or-meta"><span>M3 → M24</span><span>Ricercatore Senior · Data Scientist</span></div>
         <div class="or-value">€286k <span style="font-size:11px;color:var(--ink-light);font-weight:400">– valore strategico internalizzato: AI scouting, NLP, forecasting &amp; market intelligence</span></div>
+        <div style="font-size:11px;color:var(--ink-light);font-weight:500;margin-top:2px;margin-bottom:16px">Valore interno LUMEN &nbsp;·&nbsp; incluso nel totale RI</div>
         <div class="or-tasks">
           <div class="or-task"><span>A3.1 – Technology Assessment mercato</span><span class="or-task-period">M3→M8</span></div>
           <div class="or-task"><span>A3.2 – Estrazione informazioni da dati non strutturati</span><span class="or-task-period">M6→M16</span></div>
@@ -732,6 +872,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <div class="or-title">Sviluppo e Sperimentazione della Piattaforma Prototipale</div>
         <div class="or-meta"><span>M6 → M24</span><span>SW Architect · Frontend · Backend Dev</span></div>
         <div class="or-value">€430.820</div>
+        <div style="font-size:11px;color:#8a5e0a;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 50% &rarr; €215.410</div>
         <div class="or-tasks">
           <div class="or-task"><span>A4.1 – Sviluppo componenti middleware del prototipo</span><span class="or-task-period">M6→M16</span></div>
           <div class="or-task"><span>A4.2 – Integrazione componenti applicative</span><span class="or-task-period">M12→M22</span></div>
