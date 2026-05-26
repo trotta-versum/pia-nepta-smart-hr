@@ -250,6 +250,18 @@ nav {
 }
 .nota-costo strong { color: var(--gold); }
 
+
+.logic-note {
+  margin-top: 6px;
+  font-size: 10.5px;
+  color: var(--ink-light);
+  line-height: 1.45;
+  background: rgba(31,107,46,0.055);
+  border-left: 2px solid rgba(31,107,46,0.35);
+  padding: 6px 8px;
+}
+.strategic-panel input[type=range]::-webkit-slider-thumb { background: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+
 /* ── SIMULATORE ── */
 .sim-container { display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: start; margin-bottom: 28px; }
 .sim-panel { border: var(--border); border-radius: var(--radius); padding: 20px; }
@@ -329,6 +341,25 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px;
 .strategy-body { font-size: 12px; font-weight: 400; color: var(--ink-mid); line-height: 1.6; }
 .strategy-delta { margin-top: 12px; padding-top: 12px; border-top: var(--border); font-size: 20px; font-weight: 600; color: #165422; }
 .strategy-delta-lbl { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-light); font-weight: 500; }
+
+
+/* ── STRATEGIC CONDITIONS ── */
+.logic-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:10px; margin:12px 0 16px; }
+.logic-card { border:1px solid var(--ink-faint); background:var(--paper); border-radius:4px; padding:10px 12px; }
+.logic-card .lbl { font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); display:block; margin-bottom:4px; }
+.logic-card .val { font-size:17px; font-weight:700; color:#165422; display:block; }
+.logic-card .sub { font-size:10px; color:var(--ink-light); line-height:1.35; margin-top:2px; }
+.mode-select { width:100%; border:1px solid var(--ink-faint); background:var(--paper-warm); padding:8px 10px; border-radius:4px; font-size:12px; color:var(--ink); outline:none; }
+.strategy-details { margin-top:26px; border:1px solid var(--ink-faint); border-radius:4px; overflow:hidden; background:var(--paper); }
+.strategy-details summary { cursor:pointer; padding:14px 18px; background:var(--paper-warm); font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mid); }
+.strategy-details summary:hover { color:#1f6b2e; }
+.strategy-details-content { padding:18px 22px; font-size:12px; color:var(--ink-mid); line-height:1.75; }
+.strategy-details-content h4 { font-size:12px; color:#165422; margin:12px 0 6px; text-transform:uppercase; letter-spacing:.08em; }
+.strategy-details-content ul { margin-left:18px; margin-bottom:10px; }
+.strategy-details-content table { width:100%; border-collapse:collapse; margin:10px 0 14px; font-size:11px; }
+.strategy-details-content th, .strategy-details-content td { border-bottom:1px solid var(--ink-faint); padding:7px 8px; text-align:left; vertical-align:top; }
+.strategy-details-content th { background:var(--paper-warm); color:var(--ink-light); font-size:9px; text-transform:uppercase; letter-spacing:.1em; }
+@media (max-width:900px){ .logic-grid { grid-template-columns: repeat(2,1fr); } }
 
 /* ── WARNING BOX ── */
 .warning-box { border-left: 3px solid var(--gold); background: var(--gold-light); padding: 20px 24px; margin-bottom: 24px; border-radius: 0 var(--radius) var(--radius) 0; }
@@ -417,19 +448,24 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
   </div>
 
   <table class="data-table reveal">
-    <thead><tr><th>Soggetto</th><th>Ruolo</th><th>Riferimento</th></tr></thead>
+    <thead><tr><th>Livello</th><th>Soggetto</th><th>Ruolo nel modello</th><th>Riferimento</th></tr></thead>
     <tbody>
-      <tr><td><strong>Nepta S.r.l.</strong></td><td>Soggetto beneficiario</td><td>P.IVA 06457721006 · Media impresa · ATECO 62.09.09</td></tr>
-      <tr><td><strong>LUM Enterprise S.r.l.</strong></td><td>Advisor &amp; gestore PIA</td><td>Digital partner Università LUM Giuseppe Degennaro</td></tr>
-      <tr><td><strong>Puglia Sviluppo S.p.A.</strong></td><td>Organismo intermedio</td><td>Gestione bando per Regione Puglia</td></tr>
-      <tr><td><strong>Regione Puglia</strong></td><td>Ente erogatore</td><td>Determina n. 566 del 28/08/2025 · Dott. G. Pastore</td></tr>
+      <tr><td><span class="badge badge-blue">Attore contrattuale</span></td><td><strong>Nepta S.r.l.</strong></td><td>Committente / beneficiario PIA</td><td>P.IVA 06457721006 · Media impresa · ATECO 62.09.09</td></tr>
+      <tr><td><span class="badge badge-blue">Attore contrattuale</span></td><td><strong>LUM Enterprise S.r.l. / LUMEN</strong></td><td>Fornitore di ricerca contrattuale e delivery partner</td><td>Contratto NEPTA–LUMEN · valore imponibile €500.000</td></tr>
+      <tr><td><span class="badge badge-neutral">Contesto PIA</span></td><td><strong>Puglia Sviluppo S.p.A.</strong></td><td>Organismo intermedio</td><td>Gestione bando per Regione Puglia · non controparte del contratto NEPTA–LUMEN</td></tr>
+      <tr><td><span class="badge badge-neutral">Contesto PIA</span></td><td><strong>Regione Puglia</strong></td><td>Ente concedente / erogatore</td><td>Determina n. 566 del 28/08/2025 · non controparte del contratto NEPTA–LUMEN</td></tr>
     </tbody>
   </table>
+
+  <div class="warning-box reveal">
+    <strong>Nota di perimetro</strong>
+    <p>Il modello distingue gli <strong>attori contrattuali</strong> del rapporto NEPTA–LUMEN dagli altri soggetti del contesto PIA. Eventuali fornitori, consulenti o supporti specialistici sono considerati leve operative di delivery e non controparti contrattuali dirette nel simulatore di margine LUMEN.</p>
+  </div>
 
   <div class="grid-2 reveal">
     <div>
       <h3 style="font-size:20px;font-weight:400;margin-bottom:16px;color:var(--ink)">Obiettivo del progetto</h3>
-      <p style="font-size:13px;color:var(--ink-mid);line-height:1.75">Nepta S.r.l. realizza il progetto <strong>AI Powered Smart HR</strong> con l'obiettivo di sviluppare nuovi modelli organizzativi basati sull'intelligenza artificiale per la gestione del capitale umano aziendale. Il progetto si articola in tre linee di ricerca industriale — modelli organizzativi Smart HR, strumenti AI per la gestione delle risorse umane e scouting di mercato — integrate nello sviluppo sperimentale di una piattaforma prototipale unificata. <strong>LUMEN</strong> (LUM Enterprise S.r.l.) è il partner scientifico e tecnologico responsabile della fornitura di ricerca contrattuale ai sensi dell'Art. 2 del Contratto di Ricerca del 02/11/2025.</p>
+      <p style="font-size:13px;color:var(--ink-mid);line-height:1.75">Nepta S.r.l. realizza il progetto <strong>AI Powered Smart HR</strong> con l'obiettivo di sviluppare nuovi modelli organizzativi basati sull'intelligenza artificiale per la gestione del capitale umano aziendale. Il progetto si articola in tre linee di ricerca industriale — modelli organizzativi Smart HR, strumenti AI per la gestione delle risorse umane e scouting di mercato — integrate nello sviluppo sperimentale di una piattaforma prototipale unificata. <strong>LUMEN</strong> (LUM Enterprise S.r.l.) è il fornitore di ricerca contrattuale e delivery partner responsabile della fornitura di ricerca contrattuale ai sensi dell'Art. 2 del Contratto di Ricerca del 02/11/2025.</p>
     </div>
     <div>
       <h3 style="font-size:20px;font-weight:400;margin-bottom:16px;color:var(--ink)">Dati chiave</h3>
@@ -515,13 +551,14 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div class="or-number">OR3 &nbsp;·&nbsp; Ricerca industriale</div>
       <div class="or-title">Strumenti per lo Scouting di Scenari ed Opportunità di Mercato</div>
       <div class="or-meta"><span>M3 → M24</span><span>Ricercatore Senior · Data Scientist</span></div>
-      <div class="or-value">€0 <span style="font-size:11px;color:var(--ink-light);font-weight:400">– attività finanziate nell'ambito OR1/OR2</span></div>
+      <div class="or-value">€286k <span style="font-size:11px;color:var(--ink-light);font-weight:400">– valore strategico internalizzato: AI scouting, NLP, forecasting & market intelligence</span></div>
       <div class="or-tasks">
         <div class="or-task"><span>A3.1 – Technology Assessment mercato</span><span class="or-task-period">M3→M8</span></div>
         <div class="or-task"><span>A3.2 – Estrazione informazioni da dati non strutturati</span><span class="or-task-period">M6→M16</span></div>
         <div class="or-task"><span>A3.3 – ML e predizione per dati di mercato</span><span class="or-task-period">M10→M20</span></div>
         <div class="or-task"><span>A3.4 – Scouting opportunità di mercato</span><span class="or-task-period">M14→M24</span></div>
         <div class="or-task"><span>A3.5 – Sviluppo libreria software</span><span class="or-task-period">M18→M24 · €200k</span></div>
+        <div class="or-task"><span><strong>Nota:</strong> OR strategico trasversale, valorizzato come contributo AI/Data al delivery</span><span class="or-task-period">Strategic core</span></div>
       </div>
     </div>
 
@@ -701,25 +738,29 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
   <h2 class="section-title">Simulatore di <em>margine</em> LUMEN</h2>
 
   <p style="font-size:13px;color:var(--ink-mid);margin-bottom:24px;max-width:740px;line-height:1.8">
-    LUMEN incassa <strong>€500.000 fissi</strong> da Nepta (ricerca contrattuale, nessun timesheet). Con quei €500k deve coprire fornitori e costo reale del proprio personale, raggiungendo un <strong>margine netto ≥ 30%</strong> (≥ €150k). Per ogni risorsa: <em>costo reale = ore max × % utilizzo × €/h Patino</em>.
+    LUMEN incassa <strong>€500.000 imponibili</strong> da Nepta per la fornitura di ricerca contrattuale. Il simulatore rappresenta una <strong>vista gestionale interna</strong>: si parte dal margine target, si calcola il budget spendibile e si decide quanta quota destinare alle risorse interne LUMEN. Le ore interne generano un <strong>Valore ore</strong> secondo Tabella n.2; tale valore riduce la quota da lasciare ai fornitori e rende visibile l’effetto strategico del mix sul <strong>Margine LUMEN</strong>. Le risorse diventano i “cavalli di battaglia” di LUMEN: alcune proteggono governance e know-how, altre aumentano elasticità ed efficienza.
   </p>
 
   <!-- SCHEMA LOGICO -->
   <div class="schema-box reveal">
     <div class="schema-row schema-top">
-      <span class="schema-label">Contratto Nepta → LUMEN <span style="font-size:10px;opacity:0.6">(ricerca contrattuale · nessun timesheet)</span></span>
+      <span class="schema-label">Contratto Nepta → LUMEN <span style="font-size:10px;opacity:0.6">(ricerca contrattuale · vista gestionale interna)</span></span>
       <span class="schema-val-big">€ 500.000</span>
     </div>
+    <div class="schema-row schema-sub">
+      <span class="schema-label">Budget disponibile dopo margine target 30% <span style="font-size:10px;opacity:0.7">(€500.000 – €150.000)</span></span>
+      <span class="schema-val accent">€ 350.000</span>
+    </div>
     <div class="schema-row schema-minus">
-      <span class="schema-label">– Fornitori esterni <span style="font-size:10px;opacity:0.7">(pass-through puro · nessun margine)</span></span>
+      <span class="schema-label">– Fornitori esterni <span style="font-size:10px;opacity:0.7">(leva operativa di delivery)</span></span>
       <span class="schema-val neg" id="sc_forn">– € 0</span>
     </div>
     <div class="schema-row schema-minus">
-      <span class="schema-label">– Costo reale personale LUMEN <span style="font-size:10px;opacity:0.7">(Σ ore max × % utilizzo × €/h Patino)</span></span>
+      <span class="schema-label">– Costo reale personale LUMEN <span style="font-size:10px;opacity:0.7">(Σ ore reali × €/h Patino)</span></span>
       <span class="schema-val neg" id="sc_pers" style="color:var(--danger)">– € 0</span>
     </div>
     <div class="schema-row schema-total">
-      <span class="schema-label">= MARGINE NETTO LUMEN</span>
+      <span class="schema-label">= MARGINE LUMEN</span>
       <span class="schema-val-big" id="sc_marg" style="color:#d4c97a">€ 500.000</span>
     </div>
     <div class="schema-row" style="padding:8px 18px 12px;background:#134d1f">
@@ -733,13 +774,60 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
 
     <!-- COLONNA SX -->
     <div>
-      <!-- Slider fornitori -->
-      <div class="sim-panel" style="margin-bottom:16px">
-        <span class="sim-label">Parametri globali</span>
-        <div class="sim-row" style="margin-bottom:0">
-          <div class="sim-slider-label"><span>Fornitori esterni (€k)</span><span class="sim-slider-val" id="outForn">€ 0k</span></div>
-          <input type="range" min="0" max="250" value="133" step="5" id="sForn" oninput="calcM()">
+      <!-- Pannello strategico: budget interno ↔ fornitori ↔ margine -->
+      <div class="sim-panel strategic-panel" style="margin-bottom:16px">
+        <span class="sim-label">Leve strategiche collegate</span>
+
+        <div class="sim-row">
+          <div class="sim-slider-label"><span>Scenario strategico</span><span class="sim-slider-val" id="outScenario">Manuale</span></div>
+          <select class="mode-select" id="sScenario" onchange="applyScenario(this.value)">
+            <option value="manual">Manuale / fine tuning</option>
+            <option value="balanced">Balanced — margine e governance</option>
+            <option value="core">Core LUMEN — know-how e presidio</option>
+            <option value="lean">Lean Margin — efficienza economica</option>
+            <option value="elastic">Elastic Delivery — più fornitori, meno saturazione</option>
+          </select>
+          <div class="logic-note" id="explainScenario">Usa gli scenari come preset; poi puoi correggere manualmente singole risorse e costi.</div>
         </div>
+
+        <div class="sim-row">
+          <div class="sim-slider-label"><span>Margine target LUMEN</span><span class="sim-slider-val" id="outTarget">30%</span></div>
+          <input type="range" min="10" max="50" value="30" step="1" id="sTarget" oninput="onStrategicSlider('target')">
+          <div class="logic-note" id="explainTarget">Il target blocca la quota minima che LUMEN vuole trattenere prima di distribuire il budget operativo.</div>
+        </div>
+
+        <div class="sim-row">
+          <div class="sim-slider-label"><span>Quota budget operativo a risorse interne</span><span class="sim-slider-val" id="outInternalPct">58%</span></div>
+          <input type="range" min="0" max="100" value="58" step="1" id="sInternalPct" oninput="onStrategicSlider('pct')">
+          <div class="logic-note" id="explainInternalPct">Aumentando questa quota, LUMEN internalizza più attività: cresce il controllo e, se il costo reale è sotto il forfait, cresce anche il margine.</div>
+        </div>
+
+        <div class="sim-row">
+          <div class="sim-slider-label"><span>Budget interno LUMEN (€k)</span><span class="sim-slider-val" id="outInternalBudget">€ 202k</span></div>
+          <input type="range" min="0" max="350" value="202" step="5" id="sInternalBudget" oninput="onStrategicSlider('budget')">
+          <div class="logic-note" id="explainInternalBudget">Il budget interno viene distribuito sulle risorse in base a strategicità, capacità e convenienza economica.</div>
+        </div>
+
+        <div class="sim-row" style="margin-bottom:0">
+          <div class="sim-slider-label"><span>Priorità alle risorse core</span><span class="sim-slider-val" id="outCore">70%</span></div>
+          <input type="range" min="0" max="100" value="70" step="5" id="sCore" oninput="onStrategicSlider('core')">
+          <div class="logic-note" id="explainCore">Più è alto, più il budget va a PM, ricerca, data science e architettura: meno delivery commodity, più governance.</div>
+        </div>
+      </div>
+
+      <div class="schema-box" style="margin-bottom:16px" id="strategicFlowBox">
+        <div class="schema-row schema-top"><span class="schema-label">Budget spendibile dopo margine target</span><span class="schema-val-big" id="sf_spendibile">€ 350.000</span></div>
+        <div class="schema-row schema-minus"><span class="schema-label">Budget interno richiesto</span><span class="schema-val" id="sf_budgetInt">€ 202.000</span></div>
+        <div class="schema-row schema-minus"><span class="schema-label">Valore ore interne Tabella n.2</span><span class="schema-val pos" id="sf_valoreOre">€ 218.225</span></div>
+        <div class="schema-row schema-sub"><span class="schema-label">Fornitori residui stimati</span><span class="schema-val-big" id="sf_fornitori">€ 131.775</span></div>
+        <div class="schema-row"><span class="schema-label">Lettura strategica</span><span class="schema-val" id="sf_reading">mix bilanciato</span></div>
+      </div>
+
+      <div class="logic-grid" id="systemicKpiBox">
+        <div class="logic-card"><span class="lbl">Governance</span><span class="val" id="kpiGovernance">—</span><div class="sub" id="kpiGovernanceSub">PM + Ricerca + Data</div></div>
+        <div class="logic-card"><span class="lbl">Know-how</span><span class="val" id="kpiKnowHow">—</span><div class="sub">quota su risorse core</div></div>
+        <div class="logic-card"><span class="lbl">Dipendenza fornitori</span><span class="val" id="kpiFornitori">—</span><div class="sub">fornitori / budget spendibile</div></div>
+        <div class="logic-card"><span class="lbl">Saturazione</span><span class="val" id="kpiSaturazione">—</span><div class="sub">media utilizzo risorse</div></div>
       </div>
 
       <!-- Tabella mix risorse -->
@@ -748,7 +836,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         ✏ <strong>Colonna dorata</strong> = €/h Patino (costo aziendale lordo reale) &nbsp;·&nbsp;
         <strong>Colonna verde</strong> = % utilizzo della risorsa sul progetto.<br>
         Costo reale per risorsa = <em>Ore max × % utilizzo × €/h Patino</em><br>
-        ⚠ IT Security, Frontend Dev, Backend Dev impostati a <strong>0%</strong>: attività coperte dai sub-fornitori (inclusi nei €133k). Aumentare solo se si decide di internalizzare.
+        ⚠ IT Security, Frontend Dev, Backend Dev impostati a <strong>0%</strong>: attività coperte dai sub-fornitori (inclusi nei €135k). Aumentare solo se si decide di internalizzare.
       </div>
       <div style="overflow-x:auto">
         <table style="width:100%;font-size:11px;border-collapse:collapse" id="mixTable">
@@ -758,8 +846,9 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
             <th style="text-align:center;padding:6px 4px;background:#d4f0da;border-bottom:2px solid var(--ink-faint);color:#1f6b2e;font-weight:700">% utilizzo ✏</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Ore reali</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">€/h forfait</th>
+            <th style="text-align:right;padding:6px 4px;background:#e8f4fd;border-bottom:2px solid var(--ink-faint);color:#1a5c28;font-weight:700">Valore ore (Tab.n.2)</th>
             <th style="text-align:center;padding:6px 4px;background:var(--gold-light);border-bottom:2px solid var(--ink-faint);color:var(--gold);font-weight:700">€/h Patino ✏</th>
-            <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Margine/h</th>
+            <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Margine LUMEN/h</th>
             <th style="text-align:right;padding:6px 4px;background:var(--paper-warm);border-bottom:2px solid var(--ink-faint);color:var(--ink-light);font-weight:600">Costo reale</th>
           </tr></thead>
           <tbody id="mixBody"></tbody>
@@ -770,6 +859,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
               <td style="text-align:center;padding:7px 4px;background:#d4f0da;font-weight:700" id="tot_util">—</td>
               <td style="text-align:right;padding:7px 4px;font-weight:600" id="tot_orereali">—</td>
               <td></td>
+              <td style="text-align:right;padding:7px 4px;font-weight:700;color:#1f6b2e;background:#f0faf2" id="tot_valoreore">—</td>
               <td style="background:var(--gold-light)"></td>
               <td style="text-align:right;padding:7px 4px;font-weight:700" id="tot_margh">—</td>
               <td style="text-align:right;padding:7px 4px;font-weight:700" id="tot_costo">—</td>
@@ -779,7 +869,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       </div>
 
       <button onclick="ottimizza()" style="margin-top:14px;width:100%;padding:10px;background:#134d1f;color:#d4c97a;border:none;border-radius:var(--radius);font-size:12px;font-weight:700;letter-spacing:0.08em;cursor:pointer;text-transform:uppercase">
-        ⚡ Ottimizza mix — massimizza margine restando in €500k
+        ⚡ Ottimizza mix — crea un mix aziendale strategico
       </button>
       <div id="ottMsg" style="font-size:11px;color:var(--ink-light);margin-top:6px;text-align:center;min-height:16px"></div>
     </div>
@@ -787,8 +877,8 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
     <!-- COLONNA DX: risultati -->
     <div>
       <div class="margine-pct" id="margPct" style="margin-top:0">100%</div>
-      <div class="margine-label">MARGINE NETTO % SU €500k</div>
-      <div class="margine-euro" id="margEuro" style="margin-bottom:4px">€ 500.000 margine netto</div>
+      <div class="margine-label">MARGINE LUMEN % SU €500k</div>
+      <div class="margine-euro" id="margEuro" style="margin-bottom:4px">€ 500.000 Margine LUMEN</div>
       <div style="font-size:12px;color:var(--ink-light);margin-bottom:20px">
         obiettivo ≥ 30% = €150k &nbsp;·&nbsp;
         <span id="margGap" style="font-weight:600;color:var(--accent)">✓ +€350.000 sopra target</span>
@@ -820,7 +910,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
           <span class="bd-val neg" id="bd_pers">– € 0</span>
         </div>
         <div class="bd-row" style="background:#d4f0da">
-          <span class="bd-label" style="font-weight:700;color:var(--ink)">= Margine netto</span>
+          <span class="bd-label" style="font-weight:700;color:var(--ink)">= Margine LUMEN</span>
           <span class="bd-val" id="bd_marg" style="font-size:16px;font-weight:700;color:#165422">€ 500.000</span>
         </div>
       </div>
@@ -832,9 +922,50 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
   </div>
 
   <div class="warning-box reveal" style="margin-top:28px">
-    <strong>Ricerca contrattuale — nessun obbligo di timesheet</strong>
-    <p>Il contratto Nepta–LUMEN è di fornitura di ricerca contrattuale: LUMEN non è tenuta a produrre timesheet. La rendicontazione verso Puglia Sviluppo avviene tramite le fatture Nepta. Il margine è interno alla gestione LUMEN e non è esposto alla Commissione di Controllo PIA.</p>
+    <strong>Ricerca contrattuale — vista gestionale interna</strong>
+    <p>Il contratto NEPTA–LUMEN è configurato come fornitura di ricerca contrattuale. Il simulatore rappresenta una vista gestionale interna di LUMEN per stimare margine, costi fornitori e costo reale del personale; non sostituisce la documentazione amministrativa, contabile o tecnica richiesta dal PIA.</p>
   </div>
+
+  <details class="strategy-details reveal" id="strategicLogicNote">
+    <summary>Nota espandibile — condizioni e logica strategica sistemica del simulatore</summary>
+    <div class="strategy-details-content">
+      <p><strong>Il simulatore non è una rendicontazione obbligatoria di ore.</strong> È una vista direzionale interna che aiuta LUMEN a capire come distribuire il budget operativo tra risorse interne e fornitori, partendo dal margine desiderato.</p>
+
+      <h4>1. Logica economica di base</h4>
+      <ul>
+        <li><strong>Budget spendibile</strong> = contratto NEPTA − Margine target LUMEN.</li>
+        <li><strong>Valore ore interne</strong> = ore reali × €/h forfait Tabella n.2.</li>
+        <li><strong>Costo reale LUMEN</strong> = ore reali × €/h Patino.</li>
+        <li><strong>Fornitori residui</strong> = budget spendibile − valore ore interne.</li>
+        <li><strong>Margine LUMEN</strong> = contratto NEPTA − fornitori residui − costo reale LUMEN.</li>
+      </ul>
+
+      <h4>2. Relazioni dinamiche tra le leve</h4>
+      <table>
+        <thead><tr><th>Leva</th><th>Effetto sistemico</th><th>Rischio da controllare</th></tr></thead>
+        <tbody>
+          <tr><td>Margine target più alto</td><td>Riduce il budget operativo disponibile.</td><td>Rischio di comprimere troppo delivery e governance.</td></tr>
+          <tr><td>Più internalizzazione LUMEN</td><td>Riduce i fornitori residui e aumenta il presidio interno.</td><td>Aumenta la saturazione delle risorse.</td></tr>
+          <tr><td>Più risorse core</td><td>Protegge PM, ricerca, data science e architettura.</td><td>Può ridurre elasticità e aumentare costo reale.</td></tr>
+          <tr><td>Più fornitori</td><td>Aumenta elasticità operativa e riduce carico interno.</td><td>Riduce controllo, know-how trattenuto e marginalità potenziale.</td></tr>
+          <tr><td>Più Fascia I/II</td><td>Aumenta qualità, indirizzo scientifico e capacità strategica.</td><td>Può abbassare efficienza economica se il costo reale è alto.</td></tr>
+          <tr><td>Più Fascia III/IV</td><td>Aumenta efficienza operativa e capacità esecutiva.</td><td>Presidio strategico più debole se non bilanciato da PM e ricerca.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>3. Condizioni applicate dall’ottimizzatore</h4>
+      <ul>
+        <li>Le risorse <strong>core</strong> — PM, Ricercatore Senior, Data Scientist, Software Architect — vengono privilegiate quando aumenta la priorità strategica.</li>
+        <li>Le attività <strong>commodity</strong> — Frontend, Backend, parte IT Security — restano più esternalizzabili, salvo scelta manuale di internalizzazione.</li>
+        <li>Se la dipendenza fornitori supera il 45% del budget spendibile, il sistema segnala riduzione del controllo operativo.</li>
+        <li>Se la saturazione media supera l’80%, il sistema segnala rischio delivery anche se il margine è buono.</li>
+        <li>Se il differenziale valore ore − costo reale è positivo, l’internalizzazione contribuisce ad aumentare il Margine LUMEN.</li>
+      </ul>
+
+      <h4>4. Lettura manageriale</h4>
+      <p>L’obiettivo non è dimostrare che “meno costi = più margine”, ma visualizzare come LUMEN costruisce un mix di delivery difendibile: margine, governance, know-how, controllo dei fornitori e sostenibilità operativa devono stare in equilibrio.</p>
+    </div>
+  </details>
 </section>
 
 <!-- 6. SAL & PAGAMENTI -->
@@ -847,9 +978,9 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-dot filled"></div>
-          <div class="tl-date">Ottobre 2023</div>
-          <div class="tl-title">Firma contratto LUM–Nepta</div>
-          <div class="tl-sub">Accordo per advisory e gestione PIA</div>
+          <div class="tl-date">02/11/2025</div>
+          <div class="tl-title">Firma contratto NEPTA–LUMEN</div>
+          <div class="tl-sub">Contratto di ricerca contrattuale · valore imponibile €500.000</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot filled"></div>
@@ -860,31 +991,24 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-date">Luglio 2026 · prevista</div>
-          <div class="tl-title">Seconda tranche — SAL intermedio</div>
-          <div class="tl-amount">€50.000</div>
-          <div class="tl-sub">IVA €11.000 · Cumulato €200k</div>
+          <div class="tl-date">2026 · prevista</div>
+          <div class="tl-title">Seconda tranche — da fatturare</div>
+          <div class="tl-amount">€150.000</div>
+          <div class="tl-sub">IVA €33.000 · Cumulato €300k</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-date">Marzo 2027 · prevista</div>
-          <div class="tl-title">Terza tranche — SAL avanzato</div>
+          <div class="tl-date">2027 · prevista</div>
+          <div class="tl-title">Terza tranche — saldo finale previsto</div>
           <div class="tl-amount">€200.000</div>
-          <div class="tl-sub">IVA €44.000 · Cumulato €400k</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-date">Ottobre 2027 · prevista</div>
-          <div class="tl-title">Quarta tranche — saldo finale</div>
-          <div class="tl-amount">€100.000</div>
-          <div class="tl-sub">IVA €22.000 · Totale €500k imponibile</div>
+          <div class="tl-sub">IVA €44.000 · Totale €500k imponibile</div>
         </div>
       </div>
     </div>
     <div>
       <p style="font-size:12px;letter-spacing:0.06em;color:var(--ink-light);text-transform:uppercase;font-weight:500;margin-bottom:16px">Cumulato fatturato LUM</p>
       <div class="chart-container" style="height:280px">
-        <canvas id="salChart" role="img" aria-label="Cumulato fatturato LUM nel tempo">dic 2025: 150k, lug 2026: 200k, mar 2027: 400k, ott 2027: 500k</canvas>
+        <canvas id="salChart" role="img" aria-label="Cumulato fatturato LUM nel tempo">dic 2025: 150k, 2026: 300k, 2027: 500k</canvas>
       </div>
       <div style="margin-top:32px">
         <p style="font-size:12px;letter-spacing:0.06em;color:var(--ink-light);text-transform:uppercase;font-weight:500;margin-bottom:16px">Erogazioni PIA a Nepta (anticipazioni)</p>
@@ -973,9 +1097,9 @@ new Chart(document.getElementById('finChart'), {
 new Chart(document.getElementById('salChart'), {
   type: 'line',
   data: {
-    labels: ['ott 2023','dic 2025','lug 2026','mar 2027','ott 2027'],
+    labels: ['02/11/2025','dic 2025','2026','2027'],
     datasets: [{
-      data: [0,150000,200000,400000,500000],
+      data: [0,150000,300000,500000],
       borderColor: '#1f6b2e', backgroundColor: 'rgba(74,103,65,0.06)',
       fill: true, tension: 0.35,
       pointBackgroundColor: '#1f6b2e', pointRadius: 5, pointHoverRadius: 7, borderWidth: 1.5
@@ -994,20 +1118,19 @@ new Chart(document.getElementById('salChart'), {
 /* ── SIMULATORE MARGINE — MODELLO CORRETTO ── */
 
 const CONTRATTO = 500000;
+const TARGET_DEFAULT = 30;
 
 // Risorse LUMEN — utilizzo% è la % di impiego sul progetto (editabile)
-// costo reale per risorsa = oreMax × (utilizzo/100) × patino
+// costo reale = ore reali × €/h Patino; valore ore = ore reali × €/h forfait Tabella n.2
 const risorse = [
-  // % utilizzo calibrati per raggiungere margine ≥30% con fornitori €133k
-  // IT Security, Frontend, Backend → coperti dai sub-fornitori (inclusi nei €133k)
-  { nome:'Ric. Senior',    oreMax:1824, forfait:75,    patino:65, utilizzo:60 },
-  { nome:'Legal Expert',   oreMax:768,  forfait:75,    patino:70, utilizzo:40 },
-  { nome:'Data Scientist', oreMax:1408, forfait:68.75, patino:65, utilizzo:50 },
-  { nome:'SW Architect',   oreMax:2720, forfait:68.75, patino:68, utilizzo:30 },
-  { nome:'IT Security',    oreMax:1120, forfait:68.75, patino:70, utilizzo:0  },
-  { nome:'Frontend Dev',   oreMax:1152, forfait:50,    patino:50, utilizzo:0  },
-  { nome:'Backend Dev',    oreMax:1408, forfait:50,    patino:50, utilizzo:0  },
-  { nome:'PM (LUM)',       oreMax:247,  forfait:50,    patino:45, utilizzo:70 },
+  { nome:'Ric. Senior',    oreMax:1824, forfait:75,    patino:65, utilizzo:60, core:1.35, note:'ricerca e indirizzo scientifico' },
+  { nome:'Legal Expert',   oreMax:768,  forfait:75,    patino:70, utilizzo:40, core:0.85, note:'compliance e supporto specialistico' },
+  { nome:'Data Scientist', oreMax:1408, forfait:68.75, patino:65, utilizzo:50, core:1.30, note:'AI, dati e modelli predittivi' },
+  { nome:'SW Architect',   oreMax:2720, forfait:68.75, patino:68, utilizzo:30, core:1.15, note:'architettura e integrazione prototipale' },
+  { nome:'IT Security',    oreMax:1120, forfait:68.75, patino:70, utilizzo:0,  core:0.75, note:'sicurezza, attivabile se internalizzata' },
+  { nome:'Frontend Dev',   oreMax:1152, forfait:50,    patino:50, utilizzo:0,  core:0.45, note:'delivery applicativo commodity' },
+  { nome:'Backend Dev',    oreMax:1408, forfait:50,    patino:50, utilizzo:0,  core:0.55, note:'sviluppo tecnico esternalizzabile' },
+  { nome:'PM (LUM)',       oreMax:247,  forfait:50,    patino:45, utilizzo:70, core:1.55, note:'governance e coordinamento' },
 ];
 
 const styleP = [
@@ -1022,11 +1145,41 @@ const styleU = [
   'background:#d4f0da','color:#134d1f','font-weight:700','outline:none','cursor:text'
 ].join(';');
 
+let syncLock = false;
+
 function oreReali(r) { return Math.round(r.oreMax * r.utilizzo / 100); }
+function valoreOre(r) { return oreReali(r) * r.forfait; }
 function costoRisorsa(r) { return oreReali(r) * r.patino; }
 function margineH(r) { return r.forfait - r.patino; }
 function fmt(n) { return '€ ' + Math.abs(Math.round(n)).toLocaleString('it-IT'); }
 function sign(n) { return n >= 0 ? '+ ' : '– '; }
+function targetPct() { return parseFloat(document.getElementById('sTarget')?.value || TARGET_DEFAULT); }
+function targetEuro() { return CONTRATTO * targetPct() / 100; }
+function budgetSpendibile() { return Math.max(0, CONTRATTO - targetEuro()); }
+function costoPersonaleTot() { return risorse.reduce((s,r) => s + costoRisorsa(r), 0); }
+function valoreOreTot() { return risorse.reduce((s,r) => s + valoreOre(r), 0); }
+function fornitoriResidui() { return Math.max(0, budgetSpendibile() - valoreOreTot()); }
+function margineLumen() { return CONTRATTO - fornitoriResidui() - costoPersonaleTot(); }
+function avgUtilizzo() { return Math.round(risorse.reduce((s,r)=>s+r.utilizzo,0) / risorse.length); }
+function coreCostTot() { return risorse.filter(r => r.core >= 1.1).reduce((s,r)=>s+costoRisorsa(r),0); }
+function governanceIndex() {
+  const pm = risorse.find(r=>r.nome.includes('PM'))?.utilizzo || 0;
+  const senior = risorse.find(r=>r.nome.includes('Ric.'))?.utilizzo || 0;
+  const ds = risorse.find(r=>r.nome.includes('Data'))?.utilizzo || 0;
+  const arch = risorse.find(r=>r.nome.includes('SW'))?.utilizzo || 0;
+  return Math.round(pm*0.30 + senior*0.25 + ds*0.25 + arch*0.20);
+}
+function knowHowIndex() {
+  const cost = costoPersonaleTot();
+  if (cost <= 0) return 0;
+  return Math.round((coreCostTot() / cost) * 100);
+}
+function supplierDependencyPct() { return Math.round((fornitoriResidui() / Math.max(1,budgetSpendibile())) * 100); }
+function riskLabel(v, type='normal') {
+  if (type === 'dependency') return v > 45 ? 'Alta' : v > 30 ? 'Media' : 'Bassa';
+  if (type === 'saturation') return v > 80 ? 'Critica' : v > 65 ? 'Media' : 'Sostenibile';
+  return v > 75 ? 'Forte' : v > 45 ? 'Media' : 'Leggera';
+}
 
 function buildMixTable() {
   const tbody = document.getElementById('mixBody');
@@ -1035,12 +1188,13 @@ function buildMixTable() {
     const or = oreReali(r);
     const cr = costoRisorsa(r);
     const mh = margineH(r);
+    const vo = valoreOre(r);
     const isLast = i === risorse.length - 1;
     const bd = isLast ? '' : 'border-bottom:var(--border)';
     const mhColor = mh > 0 ? '#165422' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td style="padding:5px 6px;${bd};font-size:11px">${r.nome}</td>
+      <td style="padding:5px 6px;${bd};font-size:11px"><strong>${r.nome}</strong><div style="font-size:9.5px;color:var(--ink-light);line-height:1.25">${r.note}</div></td>
       <td style="text-align:right;padding:5px 4px;${bd}">${r.oreMax.toLocaleString('it-IT')}</td>
       <td style="text-align:center;padding:5px 4px;${bd};background:#d4f0da">
         <input type="number" min="0" max="100" step="5" value="${r.utilizzo}"
@@ -1048,16 +1202,13 @@ function buildMixTable() {
       </td>
       <td style="text-align:right;padding:5px 4px;${bd};font-weight:600" id="or_${i}">${or.toLocaleString('it-IT')}</td>
       <td style="text-align:right;padding:5px 4px;${bd}">€${r.forfait.toFixed(2)}</td>
+      <td style="text-align:right;padding:5px 4px;${bd};font-weight:700;color:#1f6b2e;background:#f0faf2" id="vo_${i}">€ ${Math.round(vo).toLocaleString('it-IT')}</td>
       <td style="text-align:center;padding:5px 4px;${bd};background:var(--gold-light)">
         <input type="number" min="0" max="300" step="0.5" value="${r.patino}"
           style="${styleP}" data-idx="${i}" data-field="patino" oninput="onInput(this)">
       </td>
-      <td style="text-align:right;padding:5px 4px;${bd};font-weight:700;color:${mhColor}" id="mh_${i}">
-        ${mh !== 0 ? sign(mh) + '€' + Math.abs(mh).toFixed(2) : '€ 0'}
-      </td>
-      <td style="text-align:right;padding:5px 4px;${bd};font-weight:600" id="cr_${i}">
-        € ${Math.round(cr).toLocaleString('it-IT')}
-      </td>
+      <td style="text-align:right;padding:5px 4px;${bd};font-weight:700;color:${mhColor}" id="mh_${i}">${mh !== 0 ? sign(mh) + '€' + Math.abs(mh).toFixed(2) : '€ 0'}</td>
+      <td style="text-align:right;padding:5px 4px;${bd};font-weight:600" id="cr_${i}">€ ${Math.round(cr).toLocaleString('it-IT')}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -1069,146 +1220,288 @@ function onInput(el) {
   const field = el.dataset.field;
   const val = parseFloat(el.value) || 0;
   risorse[i][field] = val;
-  // Update derived cells for this row
-  const or = oreReali(risorse[i]);
-  const cr = costoRisorsa(risorse[i]);
-  const mh = margineH(risorse[i]);
+  updateRow(i);
+  updateFooter();
+  syncStrategicFromActual();
+  calcM();
+}
+
+function updateRow(i) {
+  const r = risorse[i];
+  const or = oreReali(r), cr = costoRisorsa(r), vo = valoreOre(r), mh = margineH(r);
   const mhColor = mh > 0 ? '#165422' : mh < 0 ? 'var(--danger)' : 'var(--ink-light)';
-  if (document.getElementById('or_' + i))
-    document.getElementById('or_' + i).textContent = or.toLocaleString('it-IT');
+  if (document.getElementById('or_' + i)) document.getElementById('or_' + i).textContent = or.toLocaleString('it-IT');
+  if (document.getElementById('vo_' + i)) document.getElementById('vo_' + i).textContent = '€ ' + Math.round(vo).toLocaleString('it-IT');
   if (document.getElementById('mh_' + i)) {
     document.getElementById('mh_' + i).textContent = mh !== 0 ? sign(mh) + '€' + Math.abs(mh).toFixed(2) : '€ 0';
     document.getElementById('mh_' + i).style.color = mhColor;
   }
-  if (document.getElementById('cr_' + i))
-    document.getElementById('cr_' + i).textContent = '€ ' + Math.round(cr).toLocaleString('it-IT');
-  updateFooter();
-  calcM();
+  if (document.getElementById('cr_' + i)) document.getElementById('cr_' + i).textContent = '€ ' + Math.round(cr).toLocaleString('it-IT');
 }
 
 function updateFooter() {
-  const totOreMax   = risorse.reduce((s,r) => s + r.oreMax, 0);
+  const totOreMax = risorse.reduce((s,r) => s + r.oreMax, 0);
   const totOreReali = risorse.reduce((s,r) => s + oreReali(r), 0);
-  const totCosto    = risorse.reduce((s,r) => s + costoRisorsa(r), 0);
-  const totMargH    = risorse.reduce((s,r) => s + margineH(r) * oreReali(r), 0);
-  const avgUtil     = Math.round(risorse.reduce((s,r) => s + r.utilizzo, 0) / risorse.length);
-  document.getElementById('tot_oremax').textContent   = totOreMax.toLocaleString('it-IT');
-  document.getElementById('tot_util').textContent     = avgUtil + '% media';
+  const totCosto = costoPersonaleTot();
+  const totValoreOre = valoreOreTot();
+  const totMargH = risorse.reduce((s,r) => s + margineH(r) * oreReali(r), 0);
+  const avgUtil = Math.round(risorse.reduce((s,r) => s + r.utilizzo, 0) / risorse.length);
+  document.getElementById('tot_oremax').textContent = totOreMax.toLocaleString('it-IT');
+  document.getElementById('tot_util').textContent = avgUtil + '% media';
   document.getElementById('tot_orereali').textContent = totOreReali.toLocaleString('it-IT');
+  document.getElementById('tot_valoreore').textContent = '€ ' + Math.round(totValoreOre).toLocaleString('it-IT');
   const tmEl = document.getElementById('tot_margh');
   tmEl.textContent = (totMargH >= 0 ? '+ ' : '– ') + '€ ' + Math.abs(Math.round(totMargH)).toLocaleString('it-IT');
   tmEl.style.color = totMargH >= 0 ? '#165422' : 'var(--danger)';
   document.getElementById('tot_costo').textContent = '€ ' + Math.round(totCosto).toLocaleString('it-IT');
 }
 
-function calcM() {
-  const forn = parseFloat(document.getElementById('sForn').value) * 1000;
-  document.getElementById('outForn').textContent = '€ ' + Math.round(forn/1000) + 'k';
+function allowedMaxByCore(r, coreIntensity) {
+  // Quando la priorità core è alta, il sistema limita le attività commodity e protegge le risorse strategiche.
+  if (coreIntensity >= 75) {
+    if (r.nome.includes('Frontend') || r.nome.includes('Backend')) return 25;
+    if (r.nome.includes('IT Security')) return 35;
+  }
+  if (coreIntensity <= 35) {
+    if (r.nome.includes('Frontend') || r.nome.includes('Backend')) return 75;
+  }
+  return 100;
+}
+function floorByCore(r, coreIntensity) {
+  // Soglie manageriali: PM, ricerca, data science e architettura non spariscono nei mix a governance forte.
+  if (coreIntensity >= 85) {
+    if (r.nome.includes('PM')) return 80;
+    if (r.nome.includes('Ric.')) return 50;
+    if (r.nome.includes('Data')) return 65;
+    if (r.nome.includes('SW')) return 35;
+  }
+  if (coreIntensity >= 60) {
+    if (r.nome.includes('PM')) return 60;
+    if (r.nome.includes('Ric.')) return 35;
+    if (r.nome.includes('Data')) return 45;
+    if (r.nome.includes('SW')) return 20;
+  }
+  if (coreIntensity <= 30 && (r.nome.includes('PM') || r.nome.includes('Ric.'))) return 20;
+  return 0;
+}
+function distributeInternalBudget(budget, coreIntensity) {
+  // Logica constraint-based: prima protegge soglie minime core, poi distribuisce il residuo
+  // in base a margine unitario, strategicità e capacità residua.
+  risorse.forEach(r => r.utilizzo = 0);
+  let remaining = Math.max(0, budget);
 
-  const costoPersonale = risorse.reduce((s,r) => s + costoRisorsa(r), 0);
-  const margineNetto   = CONTRATTO - forn - costoPersonale;
-  const marginePct     = (margineNetto / CONTRATTO) * 100;
-  const pctR           = Math.round(marginePct);
-  const gapVal         = margineNetto - 150000;
+  // 1) Floors strategici, solo se il budget lo consente.
+  risorse.forEach(r => {
+    const floor = floorByCore(r, coreIntensity);
+    const maxU = allowedMaxByCore(r, coreIntensity);
+    const targetU = Math.min(floor, maxU);
+    const floorCost = r.oreMax * r.patino * targetU / 100;
+    if (floorCost <= remaining) {
+      r.utilizzo = targetU;
+      remaining -= floorCost;
+    } else if (r.oreMax * r.patino > 0) {
+      r.utilizzo = Math.max(0, Math.min(maxU, (remaining / (r.oreMax * r.patino)) * 100));
+      remaining = 0;
+    }
+  });
+
+  // 2) Allocazione residua: valore economico + valore strategico.
+  let pool = risorse.map((r, idx) => {
+    const spread = Math.max(-5, r.forfait - r.patino); // margine unitario
+    const economic = Math.max(0.2, spread + 3);        // evita esclusioni assolute
+    const coreBoost = 1 + (coreIntensity / 100) * (r.core - 1);
+    const score = Math.max(0.05, economic * coreBoost * r.core);
+    return {idx, score};
+  });
+
+  for (let loop = 0; loop < 6 && remaining > 1 && pool.length; loop++) {
+    const scoreSum = pool.reduce((s,x) => s + x.score, 0);
+    const nextPool = [];
+    pool.forEach(x => {
+      const r = risorse[x.idx];
+      const maxU = allowedMaxByCore(r, coreIntensity);
+      const maxCostLeft = Math.max(0, r.oreMax * r.patino * (maxU - r.utilizzo) / 100);
+      const quota = remaining * x.score / scoreSum;
+      const use = Math.min(quota, maxCostLeft);
+      if (r.oreMax * r.patino > 0) r.utilizzo += (use / (r.oreMax * r.patino)) * 100;
+      if (maxCostLeft - use > 1) nextPool.push(x);
+    });
+    const used = costoPersonaleTot();
+    remaining = Math.max(0, budget - used);
+    pool = nextPool;
+  }
+
+  // 3) Arrotondamento leggibile e vincoli finali.
+  risorse.forEach(r => {
+    const maxU = allowedMaxByCore(r, coreIntensity);
+    r.utilizzo = Math.max(0, Math.min(maxU, Math.round(r.utilizzo / 5) * 5));
+  });
+}
+
+function applyScenario(mode) {
+  const scenario = document.getElementById('sScenario');
+  if (scenario) scenario.value = mode;
+  const target = document.getElementById('sTarget');
+  const pct = document.getElementById('sInternalPct');
+  const core = document.getElementById('sCore');
+  if (mode === 'balanced') { target.value = 30; pct.value = 58; core.value = 70; }
+  if (mode === 'core')     { target.value = 28; pct.value = 72; core.value = 90; }
+  if (mode === 'lean')     { target.value = 36; pct.value = 48; core.value = 55; }
+  if (mode === 'elastic')  { target.value = 26; pct.value = 38; core.value = 35; }
+  onStrategicSlider('pct');
+}
+
+function updateSystemicKPIs() {
+  const gov = governanceIndex();
+  const know = knowHowIndex();
+  const dep = supplierDependencyPct();
+  const sat = avgUtilizzo();
+  const g = document.getElementById('kpiGovernance'); if (g) g.textContent = gov + '%';
+  const k = document.getElementById('kpiKnowHow'); if (k) k.textContent = know + '%';
+  const f = document.getElementById('kpiFornitori'); if (f) f.textContent = dep + '%';
+  const st = document.getElementById('kpiSaturazione'); if (st) st.textContent = sat + '%';
+  const gs = document.getElementById('kpiGovernanceSub'); if (gs) gs.textContent = 'presidio ' + riskLabel(gov).toLowerCase();
+  [g,k,f,st].forEach(el => { if (!el) return; el.style.color = '#165422'; });
+  if (f && dep > 45) f.style.color = 'var(--danger)';
+  if (st && sat > 80) st.style.color = 'var(--danger)';
+}
+
+function onStrategicSlider(source) {
+  if (syncLock) return;
+  syncLock = true;
+  const spend = budgetSpendibile();
+  const budgetEl = document.getElementById('sInternalBudget');
+  const pctEl = document.getElementById('sInternalPct');
+  const core = parseFloat(document.getElementById('sCore').value) || 0;
+
+  budgetEl.max = Math.round(spend / 1000);
+  let budgetK;
+  if (source === 'pct' || source === 'target' || source === 'core') {
+    budgetK = Math.round((spend * (parseFloat(pctEl.value) || 0) / 100) / 1000);
+    budgetEl.value = Math.min(parseFloat(budgetEl.max), Math.max(0, budgetK));
+  } else {
+    budgetK = parseFloat(budgetEl.value) || 0;
+    pctEl.value = spend > 0 ? Math.round((budgetK * 1000 / spend) * 100) : 0;
+  }
+  syncLock = false;
+
+  distributeInternalBudget(budgetK * 1000, core);
+  buildMixTable();
+  calcM();
+}
+
+function syncStrategicFromActual() {
+  if (syncLock) return;
+  const spend = budgetSpendibile();
+  const costK = Math.round(costoPersonaleTot() / 1000);
+  const budgetEl = document.getElementById('sInternalBudget');
+  const pctEl = document.getElementById('sInternalPct');
+  if (!budgetEl || !pctEl) return;
+  budgetEl.max = Math.round(spend / 1000);
+  budgetEl.value = Math.min(parseFloat(budgetEl.max), Math.max(0, costK));
+  pctEl.value = spend > 0 ? Math.round((costoPersonaleTot() / spend) * 100) : 0;
+}
+
+function strategicReading(margine, forn, cost, valore) {
+  const pct = margine / CONTRATTO * 100;
+  const intPct = cost / Math.max(1, budgetSpendibile()) * 100;
+  const spread = valore - cost;
+  if (pct >= targetPct() + 8 && intPct >= 45) return 'mix aziendale forte: margine sopra target e governance interna alta';
+  if (pct >= targetPct() && spread > 0) return 'mix bilanciato: le ore interne recuperano budget fornitori e proteggono il margine';
+  if (forn > budgetSpendibile() * 0.55) return 'dipendenza fornitori elevata: meno controllo operativo, margine più fragile';
+  if (pct < targetPct()) return 'attenzione: il margine scende sotto target; ridurre costi o riallocare su risorse più efficienti';
+  return 'mix sostenibile: verificare se aumentare competenze core interne';
+}
+
+function calcM() {
+  const spend = budgetSpendibile();
+  const costoPersonale = costoPersonaleTot();
+  const valore = valoreOreTot();
+  const forn = fornitoriResidui();
+  const margine = margineLumen();
+  const marginePct = (margine / CONTRATTO) * 100;
+  const pctR = Math.round(marginePct);
+  const target = targetEuro();
+  const gapVal = margine - target;
+
+  // Output slider e spiegazioni
+  const scenarioEl = document.getElementById('sScenario');
+  const scenarioNames = {manual:'Manuale', balanced:'Balanced', core:'Core LUMEN', lean:'Lean Margin', elastic:'Elastic Delivery'};
+  if (document.getElementById('outScenario')) document.getElementById('outScenario').textContent = scenarioNames[scenarioEl?.value || 'manual'] || 'Manuale';
+  if (document.getElementById('explainScenario')) document.getElementById('explainScenario').textContent = (scenarioEl?.value === 'manual') ? 'Regola manualmente le leve: il sistema mantiene relazioni logiche tra target, internalizzazione e fornitori.' : 'Preset applicato: puoi comunque modificare manualmente budget, priorità e singole risorse.';
+  document.getElementById('outTarget').textContent = Math.round(targetPct()) + '%';
+  document.getElementById('outInternalPct').textContent = document.getElementById('sInternalPct').value + '%';
+  document.getElementById('outInternalBudget').textContent = '€ ' + Math.round((parseFloat(document.getElementById('sInternalBudget').value)||0)) + 'k';
+  document.getElementById('outCore').textContent = document.getElementById('sCore').value + '%';
+  document.getElementById('explainTarget').textContent = 'Margine target = ' + fmt(target) + '. Budget operativo massimo = ' + fmt(spend) + ' da distribuire tra valore ore interne e fornitori.';
+  document.getElementById('explainInternalPct').textContent = 'Quota interna ≈ ' + fmt(costoPersonale) + ' di costo reale. Valore ore dichiarabile a Tabella n.2: ' + fmt(valore) + '. Differenziale strategico: ' + (valore - costoPersonale >= 0 ? '+ ' : '– ') + fmt(valore - costoPersonale) + '.';
+  document.getElementById('explainInternalBudget').textContent = 'Fornitori residui = Budget spendibile – Valore ore interne = ' + fmt(forn) + '. Meno fornitori esterni + risorse interne con spread positivo = più Margine LUMEN.';
+  document.getElementById('explainCore').textContent = 'Priorità core: ' + document.getElementById('sCore').value + '%. Il sistema protegge soglie minime di PM, ricerca, data science e architettura; le attività commodity restano più esternalizzabili.';
+  document.getElementById('sf_spendibile').textContent = fmt(spend);
+  document.getElementById('sf_budgetInt').textContent = fmt(costoPersonale);
+  document.getElementById('sf_valoreOre').textContent = fmt(valore);
+  document.getElementById('sf_fornitori').textContent = fmt(forn);
+  document.getElementById('sf_reading').textContent = strategicReading(margine, forn, costoPersonale, valore);
+  updateSystemicKPIs();
 
   // Schema
-  document.getElementById('sc_forn').textContent  = '– € ' + Math.round(forn).toLocaleString('it-IT');
-  document.getElementById('sc_pers').textContent  = '– € ' + Math.round(costoPersonale).toLocaleString('it-IT');
-  document.getElementById('sc_marg').textContent  = '€ ' + Math.round(margineNetto).toLocaleString('it-IT');
+  document.getElementById('sc_forn').textContent  = '– ' + fmt(forn);
+  document.getElementById('sc_pers').textContent  = '– ' + fmt(costoPersonale);
+  document.getElementById('sc_marg').textContent  = fmt(margine);
   document.getElementById('sc_marg').style.color  = gapVal >= 0 ? '#4ade80' : '#f87171';
 
   const gapEl = document.getElementById('sc_gap');
-  gapEl.textContent = gapVal >= 0
-    ? '✓ obiettivo raggiunto (+€' + Math.round(gapVal).toLocaleString('it-IT') + ')'
-    : '✗ mancano € ' + Math.abs(Math.round(gapVal)).toLocaleString('it-IT');
+  gapEl.textContent = gapVal >= 0 ? '✓ obiettivo raggiunto (+' + fmt(gapVal) + ')' : '✗ mancano ' + fmt(gapVal);
   gapEl.style.color = gapVal >= 0 ? '#4ade80' : '#f87171';
 
   // Risultati destra
   document.getElementById('margPct').textContent  = pctR + '%';
-  document.getElementById('margPct').style.color  = pctR >= 30 ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
-  document.getElementById('margEuro').textContent = '€ ' + Math.round(margineNetto).toLocaleString('it-IT') + ' margine netto';
+  document.getElementById('margPct').style.color  = pctR >= targetPct() ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
+  document.getElementById('margEuro').textContent = fmt(margine) + ' Margine LUMEN';
 
-  const gapR   = Math.round(gapVal);
+  const gapR = Math.round(gapVal);
   const gapREl = document.getElementById('margGap');
-  gapREl.textContent = gapR >= 0
-    ? '✓ +€' + Math.abs(gapR).toLocaleString('it-IT') + ' sopra target'
-    : '✗ mancano €' + Math.abs(gapR).toLocaleString('it-IT');
+  gapREl.textContent = gapR >= 0 ? '✓ +' + fmt(gapR) + ' sopra target' : '✗ mancano ' + fmt(gapR);
   gapREl.style.color = gapR >= 0 ? 'var(--accent)' : 'var(--danger)';
 
   const fillPct = Math.min(100, Math.max(0, marginePct / 60 * 100));
-  document.getElementById('margFill').style.width      = fillPct + '%';
-  document.getElementById('margFill').style.background = pctR >= 30 ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
+  document.getElementById('margFill').style.width = fillPct + '%';
+  document.getElementById('margFill').style.background = pctR >= targetPct() ? '#1f6b2e' : pctR >= 15 ? '#b8922a' : '#7a2020';
 
   // Breakdown
-  document.getElementById('bd_forn').textContent = '– € ' + Math.round(forn).toLocaleString('it-IT');
-  document.getElementById('bd_pers').textContent = '– € ' + Math.round(costoPersonale).toLocaleString('it-IT');
+  document.getElementById('bd_forn').textContent = '– ' + fmt(forn);
+  document.getElementById('bd_pers').textContent = '– ' + fmt(costoPersonale);
   const bdMarg = document.getElementById('bd_marg');
-  bdMarg.textContent = '€ ' + Math.round(margineNetto).toLocaleString('it-IT');
-  bdMarg.style.color = margineNetto >= 150000 ? '#165422' : margineNetto >= 0 ? '#b8922a' : 'var(--danger)';
+  bdMarg.textContent = fmt(margine);
+  bdMarg.style.color = margine >= target ? '#165422' : margine >= 0 ? '#b8922a' : 'var(--danger)';
 
-  // Grafico
   if (window.scenariChartInst) {
-    window.scenariChartInst.data.datasets[0].data = [
-      Math.round(forn),
-      Math.round(costoPersonale),
-      Math.round(margineNetto)
-    ];
-    window.scenariChartInst.data.datasets[0].backgroundColor = [
-      '#8a8a84', '#c5877a',
-      margineNetto >= 150000 ? '#1f6b2e' : margineNetto >= 0 ? '#3fa050' : '#7a2020'
-    ];
+    window.scenariChartInst.data.datasets[0].data = [Math.round(forn), Math.round(costoPersonale), Math.round(margine)];
+    window.scenariChartInst.data.datasets[0].backgroundColor = ['#8a8a84', '#c5877a', margine >= target ? '#1f6b2e' : margine >= 0 ? '#3fa050' : '#7a2020'];
     window.scenariChartInst.update();
   }
 }
 
-// Ottimizzatore: per ogni risorsa con margine/h negativo abbassa utilizzo,
-// per quelle con margine/h positivo massimizza utilizzo rispettando il budget
 function ottimizza() {
-  const forn = parseFloat(document.getElementById('sForn').value) * 1000;
-  const budgetPersonale = CONTRATTO - forn - 150000; // lascia margine target
-
-  if (budgetPersonale <= 0) {
-    document.getElementById('ottMsg').textContent = '⚠ Budget insufficiente — riduci i fornitori';
-    document.getElementById('ottMsg').style.color = 'var(--danger)';
-    return;
-  }
-
-  // Step 1: azzera utilizzo per risorse con margine/h negativo (costano più di quello che valgono)
-  risorse.forEach(r => {
-    if (margineH(r) < 0) r.utilizzo = 0;
-  });
-
-  // Step 2: ordina risorse per margine/h decrescente, alloca budget
-  const sorted = [...risorse]
-    .filter(r => r.patino > 0 && margineH(r) >= 0)
-    .sort((a, b) => margineH(b) - margineH(a));
-
-  // Reset utilizzo a 0 per le risorse con margine positivo, poi alloca
-  sorted.forEach(r => r.utilizzo = 0);
-
-  let budgetRim = budgetPersonale;
-  sorted.forEach(sr => {
-    const costoPerOra = sr.patino;
-    const costoMax    = sr.oreMax * costoPerOra;
-    if (costoMax <= budgetRim) {
-      sr.utilizzo = 100;
-      budgetRim -= costoMax;
-    } else {
-      sr.utilizzo = Math.floor((budgetRim / costoMax) * 100 / 5) * 5;
-      budgetRim = 0;
-    }
-  });
-
+  // Mix aziendale accattivante: protegge risorse core e usa i fornitori solo come leva elastica residua.
+  document.getElementById('sScenario').value = 'balanced';
+  document.getElementById('sCore').value = 82;
+  document.getElementById('sTarget').value = 30;
+  const spend = budgetSpendibile();
+  const targetInternalBudget = Math.round(spend * 0.60 / 1000);
+  document.getElementById('sInternalBudget').value = targetInternalBudget;
+  document.getElementById('sInternalPct').value = 60;
+  distributeInternalBudget(targetInternalBudget * 1000, 82);
   buildMixTable();
   calcM();
-  document.getElementById('ottMsg').textContent = '✓ Mix ottimizzato: risorse con margine/h negativo azzerate, budget allocato per massimizzare margine';
+  document.getElementById('ottMsg').textContent = '✓ Mix strategico proposto: PM, ricerca, data science e architettura protette; fornitori come capacità elastica residua; margine monitorato rispetto al target.';
   document.getElementById('ottMsg').style.color = '#165422';
 }
 
 window.scenariChartInst = new Chart(document.getElementById('scenariChart'), {
   type: 'bar',
   data: {
-    labels: ['Fornitori', 'Costo personale', 'Margine netto'],
+    labels: ['Fornitori', 'Costo personale', 'Margine LUMEN'],
     datasets: [{
       data: [0, 0, 500000],
       backgroundColor: ['#8a8a84', '#c5877a', '#1f6b2e'],
