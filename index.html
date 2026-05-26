@@ -738,7 +738,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <span class="sim-label">Parametri globali</span>
         <div class="sim-row" style="margin-bottom:0">
           <div class="sim-slider-label"><span>Fornitori esterni (€k)</span><span class="sim-slider-val" id="outForn">€ 0k</span></div>
-          <input type="range" min="0" max="250" value="0" step="5" id="sForn" oninput="calcM()">
+          <input type="range" min="0" max="250" value="133" step="5" id="sForn" oninput="calcM()">
         </div>
       </div>
 
@@ -747,7 +747,8 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div style="padding:8px 10px;background:var(--gold-light);border:1px solid rgba(184,146,42,0.3);border-radius:4px;font-size:10px;color:var(--gold);margin-bottom:10px">
         ✏ <strong>Colonna dorata</strong> = €/h Patino (costo aziendale lordo reale) &nbsp;·&nbsp;
         <strong>Colonna verde</strong> = % utilizzo della risorsa sul progetto.<br>
-        Costo reale per risorsa = <em>Ore max × % utilizzo × €/h Patino</em>
+        Costo reale per risorsa = <em>Ore max × % utilizzo × €/h Patino</em><br>
+        ⚠ IT Security, Frontend Dev, Backend Dev impostati a <strong>0%</strong>: attività coperte dai sub-fornitori (inclusi nei €133k). Aumentare solo se si decide di internalizzare.
       </div>
       <div style="overflow-x:auto">
         <table style="width:100%;font-size:11px;border-collapse:collapse" id="mixTable">
@@ -997,14 +998,16 @@ const CONTRATTO = 500000;
 // Risorse LUMEN — utilizzo% è la % di impiego sul progetto (editabile)
 // costo reale per risorsa = oreMax × (utilizzo/100) × patino
 const risorse = [
-  { nome:'Ric. Senior',    oreMax:1824, forfait:75,    patino:65, utilizzo:80 },
-  { nome:'Legal Expert',   oreMax:768,  forfait:75,    patino:70, utilizzo:60 },
-  { nome:'Data Scientist', oreMax:1408, forfait:68.75, patino:65, utilizzo:85 },
-  { nome:'SW Architect',   oreMax:2720, forfait:68.75, patino:68, utilizzo:90 },
-  { nome:'IT Security',    oreMax:1120, forfait:68.75, patino:70, utilizzo:65 },
-  { nome:'Frontend Dev',   oreMax:1152, forfait:50,    patino:50, utilizzo:85 },
-  { nome:'Backend Dev',    oreMax:1408, forfait:50,    patino:50, utilizzo:85 },
-  { nome:'PM (LUM)',       oreMax:247,  forfait:50,    patino:45, utilizzo:100 },
+  // % utilizzo calibrati per raggiungere margine ≥30% con fornitori €133k
+  // IT Security, Frontend, Backend → coperti dai sub-fornitori (inclusi nei €133k)
+  { nome:'Ric. Senior',    oreMax:1824, forfait:75,    patino:65, utilizzo:60 },
+  { nome:'Legal Expert',   oreMax:768,  forfait:75,    patino:70, utilizzo:40 },
+  { nome:'Data Scientist', oreMax:1408, forfait:68.75, patino:65, utilizzo:50 },
+  { nome:'SW Architect',   oreMax:2720, forfait:68.75, patino:68, utilizzo:30 },
+  { nome:'IT Security',    oreMax:1120, forfait:68.75, patino:70, utilizzo:0  },
+  { nome:'Frontend Dev',   oreMax:1152, forfait:50,    patino:50, utilizzo:0  },
+  { nome:'Backend Dev',    oreMax:1408, forfait:50,    patino:50, utilizzo:0  },
+  { nome:'PM (LUM)',       oreMax:247,  forfait:50,    patino:45, utilizzo:70 },
 ];
 
 const styleP = [
