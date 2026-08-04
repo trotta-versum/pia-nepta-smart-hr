@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<meta name="robots" content="noindex, nofollow">
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -435,6 +434,104 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
   .strategy-grid { grid-template-columns: 1fr; }
   .cover-title { font-size: 36px; }
 }
+
+/* ═══════════════════════════════════════════════════
+   PRINT STYLES — NEPTA Dashboard
+   ═══════════════════════════════════════════════════ */
+.print-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 14px; border-radius: 3px;
+  background: #134d1f; color: #d4c97a;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  cursor: pointer; border: none; text-transform: uppercase;
+  transition: 0.2s; flex-shrink: 0; margin-left: auto;
+}
+.print-btn:hover { opacity: 0.85; }
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { margin: 0; padding: 0; background: #fff !important; font-size: 10.5pt; }
+
+  /* Nascondi elementi interattivi */
+  nav, .print-btn, .cover-footer, input[type=range],
+  button, #ottMsg, #leveToggleBtn, #profiliToggleBtn,
+  .or-detail-arrow, footer, .warning-box,
+  .marg-bar-wrap, .margine-track,
+  .logic-note { display: none !important; }
+
+  /* Cover */
+  .cover { min-height: auto !important; page-break-after: always;
+    background: #134d1f !important; }
+  .cover-bg { display: none; }
+  .cover-rule, .cover-rule-h { display: none; }
+  .cover-content { padding: 28px 48px 20px !important; }
+  .cover-kpi-val { font-size: 22px !important; }
+
+  /* Sections */
+  .section { max-width: 100% !important; padding: 16px 32px !important; }
+  .section + .section { border-top: 1px solid #ddd !important; }
+  .section-title { font-size: 18pt !important; margin-bottom: 12px !important; }
+
+  /* Grids */
+  .grid-4 { grid-template-columns: repeat(4,1fr) !important; }
+  .grid-3 { grid-template-columns: repeat(3,1fr) !important; }
+  .grid-2 { grid-template-columns: 1fr 1fr !important; }
+  .or-pair-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .fasce-grid { grid-template-columns: repeat(4,1fr) !important; }
+  .or-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Tabelle */
+  .data-table, .profile-table, .or-detail-table {
+    font-size: 8.5pt !important; page-break-inside: auto;
+  }
+  .data-table tr, .or-detail-table tr { page-break-inside: avoid; }
+  .data-table th, .profile-table th, .or-detail-table th {
+    background: #f0f0f0 !important; color: #333 !important;
+  }
+
+  /* Details: forza apertura */
+  details { display: block !important; }
+  details > summary { display: none !important; }
+  .or-detail-body, .strategy-details-content {
+    display: block !important; padding: 12px 18px !important;
+  }
+
+  /* Pannelli nascosti → visibili */
+  #profiliPanel, #levePanel { display: block !important; }
+
+  /* Reveal */
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  /* Canvas → gestiti da JS */
+  canvas { max-width: 100% !important; height: auto !important; }
+  .chart-container { height: auto !important; page-break-inside: avoid; }
+  #ganttWrap { overflow: visible !important; min-width: 100% !important; }
+
+  /* Simulatore */
+  .sim-container { grid-template-columns: 1fr !important; }
+  .schema-box { page-break-inside: avoid; }
+  #mixTable { font-size: 8pt !important; }
+  #mixTable input { border: none !important; background: transparent !important;
+    padding: 0 !important; font-weight: 700; }
+  .preset-row { display: none !important; }
+  .slider-out { font-weight: 700; font-size: 13px; }
+
+  /* Page breaks */
+  #or       { page-break-before: always; }
+  #lum      { page-break-before: always; }
+  #margine  { page-break-before: always; }
+  #sal      { page-break-before: always; }
+
+  /* Varie */
+  .or-card { page-break-inside: avoid; }
+  .fascia-card { page-break-inside: avoid; }
+  .timeline { page-break-inside: avoid; }
+  .nota-costo { display: block !important; }
+  .profile-table { display: table !important; }
+  .profile-avatar { width: 24px !important; height: 24px !important; font-size: 8px !important; }
+  * { backdrop-filter: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -484,6 +581,10 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
     <a class="nav-link" href="#margine">Analisi economica</a>
     <a class="nav-link" href="#sal">SAL & pagamenti</a>
   </div>
+    <button class="print-btn" onclick="stampaDashboard()" title="Ctrl+P · Cmd+P">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Stampa PDF
+    </button>
 </nav>
 
 <!-- 1. PROGETTO -->
@@ -2328,6 +2429,57 @@ window.scenariChartInst = new Chart(document.getElementById('scenariChart'), {
 
 buildMixTable();
 calcM();
+</script>
+<script id="nepta-print-js">
+function stampaDashboard() {
+  // 1. Apri tutti i <details>
+  document.querySelectorAll('details').forEach(d => { d._wasOpen = d.open; d.open = true; });
+
+  // 2. Mostra pannelli nascosti
+  ['profiliPanel', 'levePanel'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el._wasDisplay = el.style.display; el.style.display = 'block'; }
+  });
+
+  // 3. Disegna Gantt canvas se necessario
+  if (typeof drawGantt === 'function') { try { drawGantt(); } catch(e) {} }
+
+  // 4. Converti canvas → img (i browser non stampano canvas senza questo)
+  const replacements = [];
+  document.querySelectorAll('canvas').forEach(canvas => {
+    try {
+      const dataURL = canvas.toDataURL('image/png');
+      const img = document.createElement('img');
+      img.src = dataURL;
+      img.style.cssText = 'max-width:100%;height:auto;display:block;border:1px solid #e8e6e0;border-radius:3px;margin:4px 0';
+      canvas.parentNode.insertBefore(img, canvas);
+      canvas.style.display = 'none';
+      replacements.push({ canvas, img });
+    } catch(e) { console.warn('Canvas skip:', canvas.id, e); }
+  });
+
+  // 5. Stampa dopo breve pausa per il render
+  setTimeout(() => {
+    window.print();
+    // 6. Ripristina stato originale
+    setTimeout(() => {
+      replacements.forEach(({ canvas, img }) => {
+        canvas.style.display = '';
+        if (img.parentNode) img.parentNode.removeChild(img);
+      });
+      document.querySelectorAll('details').forEach(d => { d.open = d._wasOpen || false; });
+      ['profiliPanel', 'levePanel'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el._wasDisplay !== undefined) el.style.display = el._wasDisplay;
+      });
+    }, 700);
+  }, 350);
+}
+
+// Intercetta Ctrl+P / Cmd+P
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') { e.preventDefault(); stampaDashboard(); }
+});
 </script>
 </body>
 </html>
