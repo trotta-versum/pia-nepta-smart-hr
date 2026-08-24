@@ -113,7 +113,7 @@ nav {
   display: flex; align-items: center; gap: 0; height: 52px;
 }
 .nav-brand { font-size: 13px; font-weight: 700; color: var(--ink); margin-right: 40px; white-space: nowrap; flex-shrink: 0; }
-.nav-links { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.nav-links { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-link {
   font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
@@ -437,10 +437,12 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
 
 /* ═══ PRINT — NEPTA Dashboard ═══ */
 .print-btn {
-  display:inline-flex;align-items:center;gap:7px;padding:6px 14px;
+  display:inline-flex;align-items:center;gap:7px;padding:7px 16px;
   border-radius:3px;background:#134d1f;color:#d4c97a;
   font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;border:none;transition:.2s;flex-shrink:0;margin-left:auto;
+  cursor:pointer;border:none;transition:.2s;
+  flex-shrink:0;white-space:nowrap;margin-left:16px;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.15);
 }
 .print-btn:hover{opacity:.85;}
 @media print {
@@ -539,7 +541,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
     <a class="nav-link" href="#margine">Analisi economica</a>
     <a class="nav-link" href="#sal">SAL & pagamenti</a>
   </div>
-    <button class="print-btn" onclick="stampaDashboard()" title="Ctrl+P">
+  <button class="print-btn" onclick="stampaDashboard()" title="Ctrl+P · Cmd+P">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Stampa PDF
     </button>
@@ -630,7 +632,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <span style="font-size:10px;font-weight:400;color:var(--ink-light)">espandi ▼</span>
       </summary>
       <div style="padding:10px 18px 14px;font-size:12px;color:var(--ink-mid);line-height:1.65;border-top:1px solid #c8e8d0">
-        OR1+OR2 = <strong>€1.055.090</strong> coincide con il totale Ricerca Industriale PIA (€1.055.089). OR3 non ha una linea di investimento autonoma: i €286k rappresentano il valore che LUMEN attribuisce a quell'OR nel contratto da €500k. Il totale ammesso di <strong>€1.495.909</strong> si divide tra: Ricerca Industriale (€1.055.089 · 75%), Sviluppo Sperimentale (€430.820 · 50%) e Investimenti Produttivi (€10.000 · 45%). Contratto NEPTA–LUMEN: <strong>€500.000</strong> (quota di ricerca affidata esternamente da Nepta su €1.495.909 totali ammessi).
+        OR1+OR2 = <strong>€1.055.090</strong> coincide con il totale Ricerca Industriale PIA (€1.055.089). OR1+OR2+OR3 = €1.055.089 (totale Ricerca Industriale PIA). OR1: €149.880 · OR2: €536.473 · OR3: €368.736. Contratto NEPTA–LUMEN: <strong>€500.000</strong> (quota di ricerca affidata esternamente da Nepta). Il totale ammesso di <strong>€1.495.909</strong> si divide tra: Ricerca Industriale (€1.055.089 · 75%), Sviluppo Sperimentale (€430.820 · 50%) e Investimenti Produttivi (€10.000 · 45%). Contratto NEPTA–LUMEN: <strong>€500.000</strong> (quota di ricerca affidata esternamente da Nepta su €1.495.909 totali ammessi).
       </div>
     </details>
 
@@ -646,15 +648,15 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
             <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Smart Organizational Models</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:22px;font-weight:600;color:var(--ink)">€527.545</div>
-            <div style="font-size:10px;color:var(--ink-light)">35,3% del totale</div>
+            <div style="font-size:22px;font-weight:600;color:var(--ink)">€149.880</div>
+            <div style="font-size:10px;color:var(--ink-light)">10,0% del totale</div>
           </div>
         </div>
         <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
-          <div style="height:100%;width:35.3%;background:#1f6b2e;border-radius:3px;transition:width 1s ease"></div>
+          <div style="height:100%;width:10.0%;background:#1f6b2e;border-radius:3px;transition:width 1s ease"></div>
         </div>
         <div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--ink-light)">
-          <span>Agevolazione: <strong style="color:#135224">€395.659</strong></span>
+          <span>Agevolazione: <strong style="color:#135224">€112.410</strong></span>
           <span>Intensità: <strong>75%</strong></span>
         </div>
       </div>
@@ -668,15 +670,15 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
             <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Strumenti AI per la HR</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:22px;font-weight:600;color:var(--ink)">€527.545</div>
-            <div style="font-size:10px;color:var(--ink-light)">35,3% del totale</div>
+            <div style="font-size:22px;font-weight:600;color:var(--ink)">€536.473</div>
+            <div style="font-size:10px;color:var(--ink-light)">35,9% del totale</div>
           </div>
         </div>
         <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
-          <div style="height:100%;width:35.3%;background:#2a8a3e;border-radius:3px"></div>
+          <div style="height:100%;width:35.9%;background:#2a8a3e;border-radius:3px"></div>
         </div>
         <div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--ink-light)">
-          <span>Agevolazione: <strong style="color:#135224">€395.659</strong></span>
+          <span>Agevolazione: <strong style="color:#135224">€402.355</strong></span>
           <span>Intensità: <strong>75%</strong></span>
         </div>
       </div>
@@ -690,16 +692,16 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
             <div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px">Scouting di Mercato</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:22px;font-weight:600;color:var(--ink-mid)">€286k</div>
-            <div style="font-size:10px;color:var(--ink-light)">valore strategico interno</div>
+            <div style="font-size:22px;font-weight:600;color:var(--ink-mid)">€368.736</div>
+            <div style="font-size:10px;color:var(--ink-light)">24,6% del totale</div>
           </div>
         </div>
         <div style="height:6px;background:#e8e6e0;border-radius:3px;overflow:hidden">
-          <div style="height:100%;width:19.1%;background:#4aaa5e;border-radius:3px;opacity:0.6"></div>
+          <div style="height:100%;width:24.6%;background:#4aaa5e;border-radius:3px"></div>
         </div>
         <div style="margin-top:8px;font-size:11px;color:var(--ink-light);line-height:1.5">
-          <span style="display:inline-block;background:#f0f8f2;border:1px solid #b8ddc0;color:#1f6b2e;font-weight:700;font-size:9px;letter-spacing:0.06em;padding:2px 8px;border-radius:2px;margin-right:6px">TRASVERSALE</span>
-          OR incluso nel totale RI · valorizzato come contributo AI/Data LUMEN (€286k su €500k contratto)
+          <span>Agevolazione: <strong style="color:#135224">€276.552</strong></span>
+          <span>Intensità: <strong>75%</strong></span>
         </div>
       </div>
 
@@ -733,11 +735,14 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <span style="font-size:18px;font-weight:600;color:var(--ink)">€1.495.909</span>
       </div>
       <div style="height:20px;background:#e8e6e0;border-radius:3px;overflow:hidden;display:flex">
-        <div style="height:100%;width:35.3%;background:#1f6b2e;display:flex;align-items:center;justify-content:center">
-          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR1 35%</span>
+        <div style="height:100%;width:10.0%;background:#1f6b2e;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR1 10%</span>
         </div>
-        <div style="height:100%;width:35.3%;background:#2a8a3e;display:flex;align-items:center;justify-content:center">
-          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR2 35%</span>
+        <div style="height:100%;width:35.9%;background:#2a8a3e;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR2 36%</span>
+        </div>
+        <div style="height:100%;width:24.6%;background:#4aaa5e;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR3 25%</span>
         </div>
         <div style="height:100%;width:28.8%;background:#b8922a;display:flex;align-items:center;justify-content:center">
           <span style="font-size:8px;font-weight:700;color:#fff;white-space:nowrap">OR4 29%</span>
@@ -773,8 +778,8 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         <div class="or-number">OR1 &nbsp;·&nbsp; Ricerca industriale</div>
         <div class="or-title">Smart Organizational Models</div>
         <div class="or-meta"><span>M0 → M18</span><span>Resp. Scientifico · Data Scientist</span></div>
-        <div class="or-value">€527.545</div>
-        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €395.659</div>
+        <div class="or-value">€149.880</div>
+        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €112.410</div>
         <div class="or-tasks">
           <div class="or-task"><span>A1.1 – Scenari correnti e nuove tendenze (AS-IS)</span><span class="or-task-period">M0→M6</span></div>
           <div class="or-task"><span>A1.2 – Processi Smart HR (TO-BE) e Change Management</span><span class="or-task-period">M4→M18</span></div>
@@ -819,17 +824,17 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div class="or-card ri">
         <div class="or-number">OR2 &nbsp;·&nbsp; Ricerca industriale</div>
         <div class="or-title">Strumenti di Intelligenza Artificiale per la Human Resource</div>
-        <div class="or-meta"><span>M2 → M24</span><span>Data Scientist · SW Architect · Backend Dev</span></div>
-        <div class="or-value">€527.545</div>
-        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €395.659</div>
+        <div class="or-meta"><span>M4 → M24</span><span>Data Scientist · SW Architect · Backend Dev</span></div>
+        <div class="or-value">€536.473</div>
+        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% &rarr; €402.355</div>
         <div class="or-tasks">
-          <div class="or-task"><span>A2.1 – Technology Assessment</span><span class="or-task-period">M2→M6</span></div>
-          <div class="or-task"><span>A2.2 – Estrazione contenuti e strutture dati</span><span class="or-task-period">M4→M12</span></div>
-          <div class="or-task"><span>A2.3 – Algoritmi di Fraud Detection</span><span class="or-task-period">M8→M18 · €50k</span></div>
-          <div class="or-task"><span>A2.4 – Classificazione e allocazione forza lavoro</span><span class="or-task-period">M10→M20</span></div>
-          <div class="or-task"><span>A2.5 – Smart Scoring del personale</span><span class="or-task-period">M12→M22</span></div>
-          <div class="or-task"><span>A2.6 – Percorsi di formazione personalizzati</span><span class="or-task-period">M14→M24</span></div>
-          <div class="or-task"><span>A2.7 – Sviluppo libreria software</span><span class="or-task-period">M18→M24</span></div>
+          <div class="or-task"><span>A2.1 – Technology Assessment</span><span class="or-task-period">M4→M6</span></div>
+          <div class="or-task"><span>A2.2 – Estrazione contenuti e strutture dati</span><span class="or-task-period">M7→M12</span></div>
+          <div class="or-task"><span>A2.3 – Algoritmi di Fraud Detection</span><span class="or-task-period">M7→M12 · €50k</span></div>
+          <div class="or-task"><span>A2.4 – Classificazione e allocazione forza lavoro</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A2.5 – Smart Scoring del personale</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A2.6 – Percorsi di formazione personalizzati</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A2.7 – Sviluppo libreria software</span><span class="or-task-period">M7→M18</span></div>
         </div>
       </div>
       <details class="or-detail-block">
@@ -844,13 +849,13 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
           <table class="or-detail-table">
             <thead><tr><th>Attività</th><th>Descrizione sintetica</th><th>Periodo</th><th>Deliverable</th></tr></thead>
             <tbody>
-              <tr><td><strong>A2.1</strong></td><td>Technology Assessment — Analisi stato dell'arte delle tecnologie IA per basi di conoscenza sul capitale umano; esame letteratura scientifica e industriale; analisi critica di metodologie e algoritmi esistenti.</td><td>M2→M6</td><td>D2.1</td></tr>
-              <tr><td><strong>A2.2</strong></td><td>Estrazione contenuti e strutture dati — NLP (BERT, NER, LDA, TF-IDF), OCR, web scraping per estrazione da CV e documenti standardizzabili; ETL pipeline; strutturazione con GNN e Knowledge Graphs.</td><td>M4→M12</td><td>D2.2</td></tr>
-              <tr><td><strong>A2.3</strong></td><td>Algoritmi di Fraud Detection — Metodologie anti-frode per valutazione attendibilità CV: Isolation Forest, DBSCAN, Z-Score, NER, BERT, Prophet/DTW, GNN, Random Forest, SVM. <em>SAL €50k – lug-26</em>.</td><td>M8→M18</td><td>D2.3</td></tr>
-              <tr><td><strong>A2.4</strong></td><td>Classificazione e allocazione forza lavoro — Matching domanda-offerta; KPI complessi (hard/soft skills); Random Forest, SVM, RNN, Linear Programming; aggiornamento continuo dei profili individuali.</td><td>M10→M20</td><td>D2.4</td></tr>
-              <tr><td><strong>A2.5</strong></td><td>Smart Scoring del personale — Scoring multi-dimensionale (competenze, prestazioni, potenziale, leadership, benessere); XGBoost, Random Forest, Collaborative Filtering, SVR; criteri quali-quantitativi.</td><td>M12→M22</td><td>D2.5</td></tr>
-              <tr><td><strong>A2.6</strong></td><td>Percorsi di formazione personalizzati — Algoritmi di raccomandazione (Collaborative Filtering, K-Means, NCF, Decision Trees) per percorsi formativi su base individuale o per aggregati omogenei.</td><td>M14→M24</td><td>D2.6</td></tr>
-              <tr><td><strong>A2.7</strong></td><td>Sviluppo libreria software — Librerie software con algoritmi OR2; scelta linguaggio e definizione API; documentazione utente.</td><td>M18→M24</td><td>D2.7</td></tr>
+              <tr><td><strong>A2.1</strong></td><td>Technology Assessment — Analisi stato dell'arte delle tecnologie IA per basi di conoscenza sul capitale umano; esame letteratura scientifica e industriale; analisi critica di metodologie e algoritmi esistenti.</td><td>M4→M6</td><td>D2.1</td></tr>
+              <tr><td><strong>A2.2</strong></td><td>Estrazione contenuti e strutture dati — NLP (BERT, NER, LDA, TF-IDF), OCR, web scraping per estrazione da CV e documenti standardizzabili; ETL pipeline; strutturazione con GNN e Knowledge Graphs.</td><td>M7→M12</td><td>D2.2</td></tr>
+              <tr><td><strong>A2.3</strong></td><td>Algoritmi di Fraud Detection — Metodologie anti-frode per valutazione attendibilità CV: Isolation Forest, DBSCAN, Z-Score, NER, BERT, Prophet/DTW, GNN, Random Forest, SVM. <em>SAL €50k – lug-26</em>.</td><td>M7→M12</td><td>D2.3</td></tr>
+              <tr><td><strong>A2.4</strong></td><td>Classificazione e allocazione forza lavoro — Matching domanda-offerta; KPI complessi (hard/soft skills); Random Forest, SVM, RNN, Linear Programming; aggiornamento continuo dei profili individuali.</td><td>M10→M15</td><td>D2.4</td></tr>
+              <tr><td><strong>A2.5</strong></td><td>Smart Scoring del personale — Scoring multi-dimensionale (competenze, prestazioni, potenziale, leadership, benessere); XGBoost, Random Forest, Collaborative Filtering, SVR; criteri quali-quantitativi.</td><td>M10→M15</td><td>D2.5</td></tr>
+              <tr><td><strong>A2.6</strong></td><td>Percorsi di formazione personalizzati — Algoritmi di raccomandazione (Collaborative Filtering, K-Means, NCF, Decision Trees) per percorsi formativi su base individuale o per aggregati omogenei.</td><td>M10→M15</td><td>D2.6</td></tr>
+              <tr><td><strong>A2.7</strong></td><td>Sviluppo libreria software — Librerie software con algoritmi OR2; scelta linguaggio e definizione API; documentazione utente.</td><td>M7→M18</td><td>D2.7</td></tr>
               <tr><td><strong>D2.1–D2.6</strong></td><td>Report tecnici su: technology assessment, estrazione dati, fraud detection, classificazione, scoring, formazione personalizzata</td><td>—</td><td><span class="badge badge-neutral">6 Report</span></td></tr>
               <tr><td><strong>D2.7</strong></td><td>Libreria software algoritmi OR2 + report utente</td><td>—</td><td><span class="badge badge-blue">Libreria SW</span></td></tr>
             </tbody>
@@ -877,15 +882,15 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div class="or-card ri">
         <div class="or-number">OR3 &nbsp;·&nbsp; Ricerca industriale</div>
         <div class="or-title">Strumenti per lo Scouting di Scenari ed Opportunità di Mercato</div>
-        <div class="or-meta"><span>M3 → M24</span><span>Ricercatore Senior · Data Scientist</span></div>
-        <div class="or-value">€286k <span style="font-size:11px;color:var(--ink-light);font-weight:400">– valore strategico internalizzato: AI scouting, NLP, forecasting &amp; market intelligence</span></div>
-        <div style="font-size:11px;color:var(--ink-light);font-weight:500;margin-top:2px;margin-bottom:16px">Valore interno LUMEN &nbsp;·&nbsp; incluso nel totale RI</div>
+        <div class="or-meta"><span>M4 → M24</span><span>Ricercatore Senior · Data Scientist</span></div>
+        <div class="or-value">€368.736</div>
+        <div style="font-size:11px;color:#1f6b2e;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 75% → €276.552</div>
         <div class="or-tasks">
-          <div class="or-task"><span>A3.1 – Technology Assessment mercato</span><span class="or-task-period">M3→M8</span></div>
-          <div class="or-task"><span>A3.2 – Estrazione informazioni da dati non strutturati</span><span class="or-task-period">M6→M16</span></div>
-          <div class="or-task"><span>A3.3 – ML e predizione per dati di mercato</span><span class="or-task-period">M10→M20</span></div>
-          <div class="or-task"><span>A3.4 – Scouting opportunità di mercato</span><span class="or-task-period">M14→M24</span></div>
-          <div class="or-task"><span>A3.5 – Sviluppo libreria software</span><span class="or-task-period">M18→M24 · €200k</span></div>
+          <div class="or-task"><span>A3.1 – Technology Assessment mercato</span><span class="or-task-period">M4→M6</span></div>
+          <div class="or-task"><span>A3.2 – Estrazione informazioni da dati non strutturati</span><span class="or-task-period">M7→M12</span></div>
+          <div class="or-task"><span>A3.3 – ML e predizione per dati di mercato</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A3.4 – Scouting opportunità di mercato</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A3.5 – Sviluppo libreria software</span><span class="or-task-period">M7→M18</span></div>
           <div class="or-task"><span><strong>Nota:</strong> OR strategico trasversale, valorizzato come contributo AI/Data al delivery</span><span class="or-task-period">Strategic core</span></div>
         </div>
       </div>
@@ -901,11 +906,11 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
           <table class="or-detail-table">
             <thead><tr><th>Attività</th><th>Descrizione sintetica</th><th>Periodo</th><th>Deliverable</th></tr></thead>
             <tbody>
-              <tr><td><strong>A3.1</strong></td><td>Technology Assessment mercato — Aggiornamento stato dell'arte per estrazione informazioni da dati non strutturati; analisi algoritmi passivi (sliding windows) e attivi (cambio di fase); strumenti PESTEL, scenario planning, macroeconometria.</td><td>M3→M8</td><td>D3.1</td></tr>
-              <tr><td><strong>A3.2</strong></td><td>Estrazione informazioni da dati non strutturati — LLM (GPT, BERT), NER, LDA, CNN per testi e immagini; web scraping; integrazione con dati strutturati (open data: Istat, Eurostat, ILO).</td><td>M6→M16</td><td>D3.2</td></tr>
-              <tr><td><strong>A3.3</strong></td><td>ML e predizione per dati di mercato — Serie temporali (SARIMA, Prophet, LSTM); Random Forest Regression, XGBoost; rilevamento anomalie e cambiamenti di fase (CUSUM, HMM); Ensemble Learning.</td><td>M10→M20</td><td>D3.3</td></tr>
-              <tr><td><strong>A3.4</strong></td><td>Scouting opportunità di mercato — Algoritmi per scenari non stazionari (K-Means, DBSCAN, XGBoost, BERT, LDA, Prophet, GNN, Autoencoders); cross-validation e valutazione hyper-parameters.</td><td>M14→M24</td><td>D3.4</td></tr>
-              <tr><td><strong>A3.5</strong></td><td>Sviluppo libreria software — Librerie con algoritmi OR3; scelta linguaggio e API; documentazione utente. <em>SAL €200k – mar-27</em>.</td><td>M18→M24</td><td>D3.5</td></tr>
+              <tr><td><strong>A3.1</strong></td><td>Technology Assessment mercato — Aggiornamento stato dell'arte per estrazione informazioni da dati non strutturati; analisi algoritmi passivi (sliding windows) e attivi (cambio di fase); strumenti PESTEL, scenario planning, macroeconometria.</td><td>M4→M6</td><td>D3.1</td></tr>
+              <tr><td><strong>A3.2</strong></td><td>Estrazione informazioni da dati non strutturati — LLM (GPT, BERT), NER, LDA, CNN per testi e immagini; web scraping; integrazione con dati strutturati (open data: Istat, Eurostat, ILO).</td><td>M7→M12</td><td>D3.2</td></tr>
+              <tr><td><strong>A3.3</strong></td><td>ML e predizione per dati di mercato — Serie temporali (SARIMA, Prophet, LSTM); Random Forest Regression, XGBoost; rilevamento anomalie e cambiamenti di fase (CUSUM, HMM); Ensemble Learning.</td><td>M7→M12</td><td>D3.3</td></tr>
+              <tr><td><strong>A3.4</strong></td><td>Scouting opportunità di mercato — Algoritmi per scenari non stazionari (K-Means, DBSCAN, XGBoost, BERT, LDA, Prophet, GNN, Autoencoders); cross-validation e valutazione hyper-parameters.</td><td>M10→M15</td><td>D3.4</td></tr>
+              <tr><td><strong>A3.5</strong></td><td>Sviluppo libreria software — Librerie con algoritmi OR3; scelta linguaggio e API; documentazione utente. <em>SAL €200k – mar-27</em>.</td><td>M7→M18</td><td>D3.5</td></tr>
               <tr><td><strong>D3.1–D3.4</strong></td><td>Report tecnici su technology assessment, estrazione dati non strutturati, predizione mercato e metriche di non stazionarietà</td><td>—</td><td><span class="badge badge-neutral">4 Report</span></td></tr>
               <tr><td><strong>D3.5</strong></td><td>Libreria software algoritmi OR3 + report utente</td><td>—</td><td><span class="badge badge-blue">Libreria SW</span></td></tr>
             </tbody>
@@ -930,13 +935,13 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
       <div class="or-card ss">
         <div class="or-number">OR4 &nbsp;·&nbsp; Sviluppo sperimentale</div>
         <div class="or-title">Sviluppo e Sperimentazione della Piattaforma Prototipale</div>
-        <div class="or-meta"><span>M6 → M24</span><span>SW Architect · Frontend · Backend Dev</span></div>
+        <div class="or-meta"><span>M7 → M24</span><span>SW Architect · Frontend · Backend Dev</span></div>
         <div class="or-value">€430.820</div>
         <div style="font-size:11px;color:#8a5e0a;font-weight:600;margin-top:2px;margin-bottom:16px">Agevolazione 50% &rarr; €215.410</div>
         <div class="or-tasks">
-          <div class="or-task"><span>A4.1 – Sviluppo componenti middleware del prototipo</span><span class="or-task-period">M6→M16</span></div>
-          <div class="or-task"><span>A4.2 – Integrazione componenti applicative</span><span class="or-task-period">M12→M22</span></div>
-          <div class="or-task"><span>A4.3 – Test e validazione su casi NEPTA</span><span class="or-task-period">M18→M24 · €100k</span></div>
+          <div class="or-task"><span>A4.1 – Sviluppo componenti middleware del prototipo</span><span class="or-task-period">M7→M24</span></div>
+          <div class="or-task"><span>A4.2 – Integrazione componenti applicative</span><span class="or-task-period">M10→M15</span></div>
+          <div class="or-task"><span>A4.3 – Test e validazione su casi NEPTA</span><span class="or-task-period">M13→M24</span></div>
           <div class="or-task"><span>D4.2d – Piattaforma Tecnologica Integrata</span><span class="or-task-period">Prototipo</span></div>
         </div>
       </div>
@@ -952,9 +957,9 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
           <table class="or-detail-table">
             <thead><tr><th>Attività</th><th>Descrizione sintetica</th><th>Periodo</th><th>Deliverable</th></tr></thead>
             <tbody>
-              <tr><td><strong>A4.1</strong></td><td>Sviluppo componenti middleware — Strato intermedio tra applicazioni, servizi e risorse; gestione dati, interoperabilità, sicurezza e scalabilità; implementazione modello operativo OR1; interfacce verso sistemi legacy (contabilità, ERP).</td><td>M6→M16</td><td>D4.1 · D4.2a</td></tr>
-              <tr><td><strong>A4.2</strong></td><td>Sviluppo e integrazione componenti applicative — Realizzazione componenti per gli utenti finali (funzionalità OR2-3); interfacce utente, connettori, strumenti di amministrazione; integrazione via API standardizzate; validazione F-score.</td><td>M12→M22</td><td>D4.2b · D4.2c</td></tr>
-              <tr><td><strong>A4.3</strong></td><td>Test e validazione su casi NEPTA — Validazione prototipo su casi pilota aziendali reali; confronto con/senza dimostratore; F-score e analisi comparativa modelli; report costi di industrializzazione. <em>SAL €100k – ott-27</em>.</td><td>M18→M24</td><td>D4.2d · D4.3 · D4.4</td></tr>
+              <tr><td><strong>A4.1</strong></td><td>Sviluppo componenti middleware — Strato intermedio tra applicazioni, servizi e risorse; gestione dati, interoperabilità, sicurezza e scalabilità; implementazione modello operativo OR1; interfacce verso sistemi legacy (contabilità, ERP).</td><td>M7→M24</td><td>D4.1 · D4.2a</td></tr>
+              <tr><td><strong>A4.2</strong></td><td>Sviluppo e integrazione componenti applicative — Realizzazione componenti per gli utenti finali (funzionalità OR2-3); interfacce utente, connettori, strumenti di amministrazione; integrazione via API standardizzate; validazione F-score.</td><td>M13→M24</td><td>D4.2b · D4.2c</td></tr>
+              <tr><td><strong>A4.3</strong></td><td>Test e validazione su casi NEPTA — Validazione prototipo su casi pilota aziendali reali; confronto con/senza dimostratore; F-score e analisi comparativa modelli; report costi di industrializzazione. <em>SAL €100k – ott-27</em>.</td><td>M13→M24</td><td>D4.2d · D4.3 · D4.4</td></tr>
               <tr><td><strong>D4.1</strong></td><td>Report analisi funzionalità di progettazione della piattaforma</td><td>—</td><td><span class="badge badge-neutral">Report</span></td></tr>
               <tr><td><strong>D4.2a–d</strong></td><td>Prototipi modulari: Analisi Dati Non Strutturati (a) · Classificazione/Matching/Scoring (b) · Predizione Mercato (c) · Piattaforma Integrata (d)</td><td>—</td><td><span class="badge badge-gold">4 Prototipi</span></td></tr>
               <tr><td><strong>D4.3</strong></td><td>Test Report — validazione su casi reali Nepta</td><td>—</td><td><span class="badge badge-neutral">Report</span></td></tr>
@@ -1015,7 +1020,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
 
     // Month labels (M0=Nov25 … M24=Nov27)
     const monthLabels = ['M0','M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','M14','M15','M16','M17','M18','M19','M20','M21','M22','M23','M24'];
-    const quarterLabels = {0:'Nov 25',3:'Feb 26',6:'Mag 26',9:'Ago 26',12:'Nov 26',15:'Feb 27',18:'Mag 27',21:'Ago 27',24:'Nov 27'};
+    const quarterLabels = {0:'Gen 25',3:'Apr 25',6:'Lug 25',9:'Ott 25',12:'Gen 26',15:'Apr 26',18:'Lug 26',21:'Ott 26',24:'Gen 27'};
 
     const ors = [
       { label:'OR1', color:'#1f6b2e', light:'#e8f7ec', tasks:[
@@ -1023,25 +1028,25 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
         { id:'A1.2', label:'A1.2 – TO-BE / Change Mgmt', s:4, e:18, deliverables:[{m:18,id:'D1.2'}] },
       ]},
       { label:'OR2', color:'#2a8a3e', light:'#eaf7ee', tasks:[
-        { id:'A2.1', label:'A2.1 – Technology Assessment', s:2, e:6, deliverables:[{m:6,id:'D2.1'}] },
-        { id:'A2.2', label:'A2.2 – Estrazione contenuti', s:4, e:12, deliverables:[{m:12,id:'D2.2'}] },
-        { id:'A2.3', label:'A2.3 – Fraud Detection', s:8, e:18, deliverables:[{m:18,id:'D2.3'}], sal:{m:8,label:'€50k'} },
-        { id:'A2.4', label:'A2.4 – Classificazione f.l.', s:10, e:20, deliverables:[{m:20,id:'D2.4'}] },
-        { id:'A2.5', label:'A2.5 – Smart Scoring', s:12, e:22, deliverables:[{m:22,id:'D2.5'}] },
-        { id:'A2.6', label:'A2.6 – Formazione personaliz.', s:14, e:24, deliverables:[{m:24,id:'D2.6'}] },
-        { id:'A2.7', label:'A2.7 – Libreria software', s:18, e:24, deliverables:[{m:24,id:'D2.7'}] },
+        { id:'A2.1', label:'A2.1 – Technology Assessment', s:4, e:6, deliverables:[{m:6,id:'D2.1'}] },
+        { id:'A2.2', label:'A2.2 – Estrazione contenuti', s:7, e:12, deliverables:[{m:12,id:'D2.2'}] },
+        { id:'A2.3', label:'A2.3 – Fraud Detection', s:7, e:12, deliverables:[{m:12,id:'D2.3'}], sal:{m:7,label:'€50k'} },
+        { id:'A2.4', label:'A2.4 – Classificazione f.l.', s:10, e:15, deliverables:[{m:15,id:'D2.4'}] },
+        { id:'A2.5', label:'A2.5 – Smart Scoring', s:10, e:15, deliverables:[{m:22,id:'D2.5'}] },
+        { id:'A2.6', label:'A2.6 – Formazione personaliz.', s:10, e:15, deliverables:[{m:24,id:'D2.6'}] },
+        { id:'A2.7', label:'A2.7 – Libreria software', s:7, e:18, deliverables:[{m:18,id:'D2.7'}] },
       ]},
       { label:'OR3', color:'#4aaa5e', light:'#edfaf0', tasks:[
-        { id:'A3.1', label:'A3.1 – Tech Assessment mkt', s:3, e:8, deliverables:[{m:8,id:'D3.1'}] },
-        { id:'A3.2', label:'A3.2 – Estrazione dati n.s.', s:6, e:16, deliverables:[{m:16,id:'D3.2'}] },
-        { id:'A3.3', label:'A3.3 – ML predizione mercato', s:10, e:20, deliverables:[{m:20,id:'D3.3'}] },
-        { id:'A3.4', label:'A3.4 – Scouting opportunità', s:14, e:24, deliverables:[{m:24,id:'D3.4'}] },
-        { id:'A3.5', label:'A3.5 – Libreria software', s:18, e:24, deliverables:[{m:24,id:'D3.5'}], sal:{m:16,label:'€200k'} },
+        { id:'A3.1', label:'A3.1 – Tech Assessment mkt', s:4, e:6, deliverables:[{m:8,id:'D3.1'}] },
+        { id:'A3.2', label:'A3.2 – Estrazione dati n.s.', s:7, e:12, deliverables:[{m:12,id:'D3.2'}] },
+        { id:'A3.3', label:'A3.3 – ML predizione mercato', s:7, e:12, deliverables:[{m:12,id:'D3.3'}] },
+        { id:'A3.4', label:'A3.4 – Scouting opportunità', s:10, e:15, deliverables:[{m:15,id:'D3.4'}] },
+        { id:'A3.5', label:'A3.5 – Libreria software', s:7, e:18, deliverables:[{m:18,id:'D3.5'}], sal:{m:16,label:'€200k'} },
       ]},
       { label:'OR4', color:'#b8922a', light:'#fdf6e6', tasks:[
-        { id:'A4.1', label:'A4.1 – Middleware', s:6, e:16, deliverables:[{m:16,id:'D4.1'},{m:16,id:'D4.2a'}] },
-        { id:'A4.2', label:'A4.2 – Integrazione app.', s:12, e:22, deliverables:[{m:22,id:'D4.2b'},{m:22,id:'D4.2c'}] },
-        { id:'A4.3', label:'A4.3 – Test e validazione', s:18, e:24, deliverables:[{m:24,id:'D4.2d'},{m:24,id:'D4.3'},{m:24,id:'D4.4'}], sal:{m:23,label:'€100k'} },
+        { id:'A4.1', label:'A4.1 – Middleware', s:7, e:24, deliverables:[{m:24,id:'D4.1'},{m:16,id:'D4.2a'}] },
+        { id:'A4.2', label:'A4.2 – Integrazione app.', s:13, e:24, deliverables:[{m:24,id:'D4.2b'},{m:22,id:'D4.2c'}] },
+        { id:'A4.3', label:'A4.3 – Test e validazione', s:13, e:24, deliverables:[{m:24,id:'D4.2d'},{m:24,id:'D4.3'},{m:24,id:'D4.4'}], sal:{m:23,label:'€100k'} },
       ]},
     ];
 
@@ -1188,7 +1193,7 @@ footer { background: #134d1f; padding: 32px 64px; display: flex; justify-content
     });
 
     // Today line
-    const nowM = 6; // May 2026 = M6
+    const nowM = 19; // Agosto 2026 = M19 (M0=Gen 2025)
     const nx = LEFT + nowM * mW;
     ctx.strokeStyle = '#c0392b';
     ctx.lineWidth = 1.5;
